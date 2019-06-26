@@ -1,13 +1,13 @@
 {
-  "name": "Tony.Aiello.io",
+  "name": "TonyAielloio",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-	"dev": "vue-cli-service serve",
-	"test": "vue-cli-service test"
+	  "dev": "vue-cli-service serve",
+	  "test": "vue-cli-service test"
   },
   "dependencies": {
     "coffee": "^5.2.1",
@@ -16,8 +16,8 @@
     "pug-plain-loader": "^1.0.0",
     "vue": "^2.6.10",
     "vue-loader": "^15.7.0",
-    "vue-router": "^3.0.3"
-	"vue-parallax": "^1.1.1",
+    "vue-router": "^3.0.3",
+	"vue-parallax": "^1.1.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.8.0",
