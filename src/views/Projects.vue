@@ -9,7 +9,9 @@
         </div>
 
         <div class="centercontent">
+            <a href="https://missiongotyoursix.org" target="new">
             <h4>Mission Got Your Six</h4>
+            </a>
         </div>
         <br />
         <br />
@@ -22,12 +24,16 @@
                 The organization offers networking opportunities by hosting activites, softball games, and social events. Fundraising and donations are important components, and are 
                 greatly appreciated and needed in order to offer this support for our Heroes.
                 <div >
+                    <a href="https://missiongotyoursix.org" target="new">
                     <img  class="contain" src="../assets/six1.png" style="width:1582px;height:735px;">
+                    </a>
                 </div>
             <br /> 
             <hr />
             <div>
+                <a href="https://missiongotyoursix.org" target="new">
                 <img  class="contain" src="../assets/six2.png" style="width:1582px;height:735px;">
+                </a>
             </div>
             <br />
         </div>
@@ -45,7 +51,9 @@
             <h4>Conference Website</h4>
         </div>
         <div class="centercontent">
+            <a href="https://www.ccsc.org/midwest" target="new">
             <h4>Consortium For Computing Sciences in Colleges Website 2019</h4>
+            </a>
         </div>
         <br />
         <br />
@@ -60,7 +68,9 @@
                 The Institute of Electrical and Electronic Engineers, (sometimes just called I-Triple-E).
             </p>
                 <div >
+                    <a href="https://www.ccsc.org/midwest" target="new">
                     <img  class="contain" src="../assets/ccscmw2019.png" style="width:1580px;height:638px;">
+                    </a>
                 </div>
             <br /> 
         </div>
@@ -70,11 +80,58 @@
 
 
 
+
+        <div class="centercontent">
+            <h4>Artist Website</h4>
+        </div>
+
+        <div class="centercontent">
+            <a href="http://annemorsehambrock.net" target="new">
+            <h4>Anne Morse-Hambrock</h4>
+            </a>
+        </div>
+        <br />
+        <br />
+
+        <div>
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This website is developing for a local artist and music professor.  Anne Morse-Hambrock 
+                is music and harp instructor at UW-Parkside, and Carthage College.  In addition, she has amazing diverse talents as an artist, writer,
+                humorist, and performer.  She offers live performances and services for weddings, keynote speaking,
+                and other events.  Anne has albums as well as individual tracks for sale and download through her website. Visitors
+                can also reserve bookings and make payments and deposits through the site.   
+            </p>
+                <div>
+                    <a href="http://annemorsehambrock.net" target="new">
+                    <img  class="contain" src="../assets/anne1.png" style="width:1578px;height:736px;">
+                    </a>
+                </div>
+            <br /> 
+                <div>
+                    <a href="http://annemorsehambrock.net" target="new">
+                    <img  class="contain" src="../assets/anne2.png" style="width:1582px;height:679px;">
+                    </a>
+                </div>
+            <br /> 
+        </div>
+        <hr />
+        <br />
+        <br />
+
+
+
+
+
+
+
+
         <div class="centercontent">
             <h4>VueJS Application</h4>
         </div>
         <div class="centercontent">
+            <a href="https://deployotr.aiello.io" target="new">
             <h4>On The Radar</h4>
+            </a>
         </div>
 
         <div>
@@ -90,22 +147,30 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The next team to take over this project rewrote the app using Angular.
             </p>
                 <div class="floatright">
+                    <a href="https://deployotr.aiello.io" target="new">
                     <img  class="scale-down" src="../assets/otr3.png" style="width:500px;height:400px;">
+                    </a>
                 </div>
                 <br />
 
                 <div class="floatleft">
+                    <a href="https://deployotr.aiello.io" target="new">
                     <img  class="scale-down" src="../assets/otr1.png" style="width:500px;height:400px;">
+                    </a>
                 </div>
                 <br />
 
                 <div class="floatnone">
+                    <a href="https://deployotr.aiello.io" target="new">
                     <img  class="scale-down" src="../assets/otr2.png" style="width:300px;height:400px;">
+                    </a>
                 </div>
                 <br />
 
                 <div class="floatnone">
+                    <a href="https://deployotr.aiello.io" target="new">
                     <img  class="scale-down" src="../assets/otrss.png" style="width:800px;height:400px;">
+                    </a>
                 </div>
                 <br /> 
         </div>
@@ -116,7 +181,9 @@
             <h4>E-Commerce</h4>
         </div>
         <div class="centercontent">
+            <a href="https://volga.aiello.io" target="new">
             <h4>Project Volga</h4>
+            </a>
         </div>
         <br />
         <br />
@@ -132,7 +199,9 @@
 
             </p>
             <div class="floatnone">
+                <a href="https://volga.aiello.io" target="new">
                 <img  class="contain" src="../assets/volga1.png" style="width:1068px;height:765px;">
+                </a>
             </div>
             <br /> 
         </div>
@@ -145,7 +214,9 @@
         </div>
 
         <div class="centercontent">
+            <a href="https://appfactoryuwp.com" target="new">
             <h4>App Factory Website</h4>
+            </a>
         </div>
         <br />
         <br />
@@ -160,7 +231,9 @@
                  an on-campus business that develops applications for regional businesses and organizations. 
             </p>
                 <div >
+                    <a href="https://appfactoryuwp.com" target="new">
                     <img  class="contain" src="../assets/appfactory.png" style="width:1586px;height:775px;">
+                    </a>
                 </div>
             <br /> 
         </div>
@@ -172,7 +245,9 @@
             <h4>Conference Website</h4>
         </div>
         <div class="centercontent">
+            <a href="https://ccscmw2018.aiello.io" target="new">
             <h4>Consortium For Computing Sciences in Colleges Website 2018</h4>
+            </a>
         </div>
         <br />
         <br />
@@ -186,7 +261,9 @@
                 The Institute of Electrical and Electronic Engineers, (sometimes just called I-Triple-E).
             </p>
                 <div >
+                    <a href="https://ccscmw2018.aiello.io" target="new">
                     <img  class="contain" src="../assets/ccscmw2018.png" style="width:1582px;height:739px;">
+                    </a>
                 </div>
             <br /> 
         </div>
@@ -199,7 +276,9 @@
         </div>
 
         <div class="centercontent">
+            <a href="https://gearblabs.aiello.io" target="new">
             <h4>Gear Blabs Website</h4>
+            </a>
         </div>
         <br />
         <br />
@@ -210,7 +289,9 @@
                 Images of sound and lighting for bands and shows fill the pages of this mockup blog, that had to be created to specifications. 
             </p>
                 <div >
+                    <a href="https://gearblabs.aiello.io" target="new">
                     <img  class="contain" src="../assets/gear.png" style="width:1905px;height:923px;">
+                    </a>
                 </div>
             <br /> 
         </div>
@@ -227,7 +308,9 @@
         </div>
 
         <div class="centercontent">
+            <a href="https://rainbow-of-dreams.com" target="new">
             <h4>Rainbow of Dreams Gifts</h4>
+            </a>
         </div>
         <br />
         <br />
@@ -240,7 +323,9 @@
                 installed to facilitate online shoppping through the website store front.
             </p>
                 <div >
+                    <a href="https://rainbow-of-dreams.com" target="new">
                     <img  class="contain" src="../assets/rainbow.png" style="width:1581px;height:773px;">
+                    </a>
                 </div>
             <br /> 
         </div>
@@ -251,15 +336,14 @@
 
 
 
-
-
-
         <div class="centercontent">
             <h4>Event Website</h4>
         </div>
 
         <div class="centercontent">
+            <a href="https://hr0.aiello.io" target="new">
             <h4>Chi Steppin</h4>
+            </a>
         </div>
         <br />
         <br />
@@ -270,9 +354,86 @@
                 This is an event produced by private individuals, and offers dance classes and lessons from professionals.  The weekend event is 
                 private, and advanced ticket purchase is suggested.  
             </p>
-                <div >
+                <div>
+                    <a href="https://hr0.aiello.io" target="new">
                     <img  class="contain" src="../assets/chi.png" style="width:1582px;height:749px;">
+                    </a>
                 </div>
+            <br /> 
+        </div>
+        <hr />
+        <br />
+        <br />
+
+
+
+
+
+
+
+
+
+        <div class="centercontent">
+            <h4>DJ Website</h4>
+        </div>
+
+        <div class="centercontent">
+            <a href="https://djtonya.net" target="new">
+            <h4>DJ TONYA</h4>
+            </a>
+        </div>
+        <br />
+        <br />
+
+        <div>
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This DJ TONYA website is a DJ site dedicated to the art of the mix.  
+            </p>
+                <div>
+                    <a href="https://djtonya.net" target="new">
+                    <img  class="contain" src="../assets/ssdjtonyanet-1024x433.jpg" style="width:1024px;height:433px;">
+                    </a>
+                </div>
+            <br /> 
+        </div>
+        <hr />
+        <br />
+        <br />
+
+
+
+
+
+
+
+        <div class="centercontent">
+            <h4>Conservation Website</h4>
+        </div>
+
+        <div class="centercontent">
+            <a href="https://savethetigers.aiello.io/" target="new">
+            <h4>Save The Tigers!</h4>
+            </a>
+        </div>
+        <br />
+        <br />
+
+        <div>
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Did you know that only 3,200 Bengal Tigers are left in the whole world?
+                The Save The Tigers website is a conservation website that began as a research assignment for  Art 377
+                Web Design class.  We were to research an endangered species and build a basic 4 or 5-page website
+                that raises awareness for the cause. The website design had to be within specifications and we had to
+                make all of the design elements with the Adobe Suite, which includes Illustrator and PhotoShop. 
+                All of the code such as HTML and CSS are all written from scratch--it's not a prebuilt content 
+                management system. 
+            </p>
+                <div>
+                    <a href="https://savethetigers.aiello.io" target="new">
+                    <img  class="contain" src="../assets/bengal.png" style="width:947px;height:919px;">
+                    </a>
+                </div>
+            <br />
             <br /> 
         </div>
         <hr />
@@ -289,6 +450,75 @@
 
 
 
+        <div class="centercontent">
+            <h4>Restaurant Website</h4>
+        </div>
+
+        <div class="centercontent">
+            <a href="https://djtonya.net" target="new">
+            <h4>Barnacle Buds</h4>
+            </a>
+        </div>
+        <br />
+        <br />
+
+        <div>
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This website project was originally designed in our Art 377 Web Design class at the university.
+                We had to select an individual restaurant, not a chain, and create an updated look and design, using our digital design skillset.
+                I chose a friend's restaurant, Barnacle Buds located in Bay View, just minutes south of downtown Milwaukee off of South KK Avenue.
+                All of the code such as HTML and CSS are all written from scratch--it's not a prebuilt content management system. All artwork
+                and icons have been done by hand.
+    
+            </p>
+                <div>
+                    <a href="https://barnaclebuds.aiello.io" target="new">
+                    <img  class="contain" src="../assets/barnacle.jpg" style="width:562px;height:700px;">
+                    </a>
+                </div>
+            <br /> 
+        </div>
+        <hr />
+        <br />
+        <br />
+
+
+
+
+
+
+
+
+        <div class="centercontent">
+            <h4>E-Commerce Website</h4>
+        </div>
+
+        <div class="centercontent">
+            <a href="http://naturesbestshea.weebly.com/" target="new">
+            <h4>Natures Best Shea Butter</h4>
+            </a>
+        </div>
+        <br />
+        <br />
+
+        <div>
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This website project is made using Weebly.com for a local entrepreneur.  This project
+                was a group project for our Management Information Systems MIS 220 class.  Our specifications were to build an
+                E-commerce website that fits all of her products.  This is one of our first website projects for a client, and our
+                first website team project from my time as an undergraduate.
+    
+            </p>
+                <div>
+                    <a href="https://barnaclebuds.aiello.io" target="new">
+                    <img  class="contain" src="../assets/natures.png" style="width:900px;height:456px;">
+                    </a>
+                </div>
+            <br /> 
+        </div>
+        <hr />
+        <br />
+        <br />
 
 
 
