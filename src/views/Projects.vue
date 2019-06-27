@@ -1,57 +1,350 @@
 <template>
-  <div class="about">
-    <h1>Projects</h1>
+    <div class="about">
+        <h1>Projects</h1>
+
+
+
+        <div class="centercontent">
+            <h4>Non Profit Veterans Organization</h4>
+        </div>
+
+        <div class="centercontent">
+            <h4>Mission Got Your Six</h4>
+        </div>
+        <br />
+        <br />
+
+        <div>
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Mission Got Your Six project is a website project for a local, non-profit, veteran's organization.
+                Their slogan is "Never Alone,  22", is one that they hope will raise awareness of the fact that 22 veterans commit suicide each year, and this
+                mission's goal is to provide medical and other services free of charge to first responders and Unites States Veterans.
+                The organization offers networking opportunities by hosting activites, softball games, and social events. Fundraising and donations are important components, and are 
+                greatly appreciated and needed in order to offer this support for our Heroes.
+                <div >
+                    <img  class="contain" src="../assets/six1.png" style="width:1582px;height:735px;">
+                </div>
+            <br /> 
+            <hr />
+            <div>
+                <img  class="contain" src="../assets/six2.png" style="width:1582px;height:735px;">
+            </div>
+            <br />
+        </div>
+        <hr />
+        <br />
+        <br />
 
 
 
 
-    <h2>Apps</h2>
-<h4>On the Radar</h4>
-The On the Radar project is a web-based application using  a MEVN stack (MongoDB Express.js VueJS Node.js.)  The app is being developed to be used by students, advisors, and department administrators.  Students must meet certain requirements within their general education courses in order to complete their general education requirements for their major or program. The app will help guide which course combinations meet those requirements by using an interactive radar graph.
-
-<a href="https://deployotr.aiello.io/" target="_blank" rel="noopener noreferrer"><img class="alignnone wp-image-187 size-medium" src="https://tony.aiello.io/wp-content/uploads/2018/05/otrlogo-300x205.png" alt="" width="300" height="205" /></a> <a href="https://deployotr.aiello.io/" target="_blank" rel="noopener noreferrer"><img class="alignnone wp-image-188 size-medium" src="https://tony.aiello.io/wp-content/uploads/2018/05/Screenshot_2018-04-24-16-12-02-169x300.png" alt="" width="169" height="300" /></a> <a href="https://deployotr.aiello.io/" target="_blank" rel="noopener noreferrer"><img class="alignnone wp-image-189 size-medium" src="https://tony.aiello.io/wp-content/uploads/2018/05/Screenshot_2018-04-24-16-12-23-169x300.png" alt="" width="169" height="300" /></a> <a href="https://deployotr.aiello.io/" target="_blank" rel="noopener noreferrer"><img class="alignnone wp-image-190 size-medium" src="https://tony.aiello.io/wp-content/uploads/2018/05/Screenshot_2018-04-24-16-13-21-169x300.png" alt="" width="169" height="300" /></a>
-
-[caption id="attachment_186" align="alignnone" width="1578"]<a href="https://deployotr.aiello.io" target="_blank" rel="noopener noreferrer"><img class="wp-image-186 size-full" src="https://tony.aiello.io/wp-content/uploads/2018/05/otrss.png" alt="On The Radar" width="1578" height="580" /></a> On The Radar[/caption]
-<h4></h4>
-<h4>Project Volga</h4>
-<a href="https://volga.aiello.io" target="_blank" rel="noopener noreferrer">Project Volga</a> was the first site I designed after Computer Science 1. This project came from Web Concepts I &amp; II.  Volga is a river, like the Nile River, or the Amazon River.  Well, this is project Volga, and it functions like the other e-commerce rivers, kind of.  This site focused on the front end for the first semester, and the back end for the second semester.  Project Volga was one of the most fun and challenging projects to complete.  This is before I've had design classes. I'm just saying. Click on the screen shots to go into that website.
-
-[caption id="attachment_152" align="alignnone" width="1068"]<a href="https://volga.aiello.io" target="_blank" rel="noopener noreferrer"><img class="wp-image-152 size-full" src="https://tony.aiello.io/wp-content/uploads/2018/04/VolgaBooks1.png" alt="Volga Book Store" width="1068" height="765" /></a> Volga Book Store[/caption]
-<h2>Business</h2>
-<h3><a href="http://appfactoryuwp.com" target="_blank" rel="noopener noreferrer">The App Factory</a></h3>
-[caption id="attachment_111" align="alignnone" width="1586"]<a href="http://appfactoryuwp.com" target="_blank" rel="noopener noreferrer"><img class="wp-image-111 size-full" src="https://tony.aiello.io/wp-content/uploads/2018/03/af.png" alt="App Factory Website" width="1586" height="775" /></a> App Factory Website[/caption]
-
-<h2>Blog</h2>
-<h3><a href="http://gearblabs.custom-designed.us" target="_blank" rel="noopener noreferrer">Gear Blabs</a></h3>
-[caption id="attachment_35" align="alignnone" width="1905"]<a href="http://gearblabs.custom-designed.us" target="_blank" rel="noopener noreferrer"><img class="wp-image-35 size-full" src="https://tony.aiello.io/wp-content/uploads/2017/08/gear.png" alt="gear blabs gear review blog" width="1905" height="923" /></a> gear blabs gear review blog[/caption]
-
-AV Gear review blog
-<h2>Conference</h2>
-[caption id="attachment_112" align="alignnone" width="1584"]<a href="https://ccscmw2018.aiello.io" target="_blank" rel="noopener noreferrer"><img class="wp-image-112 size-full" src="https://tony.aiello.io/wp-content/uploads/2018/03/ccsc.png" alt="2018 CCSC Midwest Conference" width="1584" height="771" /></a> 2018 CCSC Midwest Conference[/caption]
-<h2>Events</h2>
-[caption id="attachment_175" align="alignnone" width="1582"]<a href="http://chisteppin.com" target="_blank" rel="noopener noreferrer"><img class="wp-image-175 size-full" src="https://tony.aiello.io/wp-content/uploads/2018/05/chi.png" alt="Chisteppin.com Screenshot" width="1582" height="749" /></a> Chisteppin.com[/caption]
-<h2>Video &amp; Music Subscription</h2>
-<h3><a href="http://djtonya.net" target="_blank" rel="noopener noreferrer">DJ Tonya .net</a></h3>
-[caption id="attachment_68" align="alignnone" width="1024"]<a href="https://djtonya.net" target="_blank" rel="noopener noreferrer"><img class="wp-image-68 size-full" src="https://tony.aiello.io/wp-content/uploads/2017/08/ssdjtonyanet-1024x433.jpg" alt="DJ Tonya .net" width="1024" height="433" /></a> DJ Tonya .net[/caption]
-<h2>Conservation Website</h2>
-<h3><a href="http://savethetigers.custom-designed.us" target="_blank" rel="noopener noreferrer">Save The Tigers!</a></h3>
-[caption id="attachment_42" align="alignnone" width="947"]<a href="http://savethetigers.custom-designed.us/" target="_blank" rel="noopener noreferrer"><img class="wp-image-42 size-full" src="https://tony.aiello.io/wp-content/uploads/2017/08/bengal.png" alt="Save The Tigers!" width="947" height="919" /></a> Save The Tigers![/caption]
-<h2>Restaurant</h2>
-<h3><a href="http://barnacle-buds.custom-designed.us" target="_blank" rel="noopener noreferrer">Barnacle Bud's</a></h3>
-[caption id="attachment_59" align="alignnone" width="1027"]<a href="http://barnacle-buds.custom-designed.us" target="_blank" rel="noopener noreferrer"><img class="wp-image-59 " src="https://tony.aiello.io/wp-content/uploads/2017/09/barnacle.jpg" alt="Barnacle Bud's" width="1027" height="1279" /></a> Barnacle Bud's[/caption]
-<h2>E-Commerce</h2>
-<h3><a href="http://professionaldjstore.com/cart/zc" target="_blank" rel="noopener noreferrer">Custom Designed Lighting, Sound &amp; Video</a></h3>
-[caption id="attachment_52" align="alignnone" width="888"]<a href="http://professionaldjstore.com/cart/zc" target="_blank" rel="noopener noreferrer"><img class="wp-image-52 size-full" src="https://tony.aiello.io/wp-content/uploads/2017/08/cdlsv.png" alt="Custom Designed Lighting Sound &amp; Video" width="888" height="914" /></a> Custom Designed Lighting Sound &amp; Video[/caption]
-<h2>E-Commerce</h2>
-<h3><a href="http://naturesbestshea.weebly.com/" target="_blank" rel="noopener noreferrer">Nature's Best Shea Products</a></h3>
-[caption id="attachment_56" align="alignnone" width="900"]<a href="http://naturesbestshea.weebly.com/" target="_blank" rel="noopener noreferrer"><img class="wp-image-56 size-full" src="https://tony.aiello.io/wp-content/uploads/2017/09/natures.png" alt="Nature's Best Shea Products" width="900" height="456" /></a> Nature's Best Shea Products[/caption]
-<h2>E-Commerce</h2>
-<h3><a href="http://rainbow-of-dreams.com" target="_blank" rel="noopener noreferrer">Rainbow of Dreams Gifts</a></h3>
-[caption id="attachment_179" align="alignnone" width="1581"]<a href="http://rainbow-of-dreams.com" target="_blank" rel="noopener noreferrer"><img class="wp-image-179 size-full" src="https://tony.aiello.io/wp-content/uploads/2018/05/rainbow.png" alt="Rainbow of Dreams" width="1581" height="773" /></a> Rainbow of Dreams[/caption]
 
 
 
-  </div>
+        <div class="centercontent">
+            <h4>Conference Website</h4>
+        </div>
+        <div class="centercontent">
+            <h4>Consortium For Computing Sciences in Colleges Website 2019</h4>
+        </div>
+        <br />
+        <br />
+
+        <div>
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This conference website design and build was assigned to me during the early spring of 2018 by one of our
+                Computer Science professors, Dr. Zaid Altahat.  I've continued the project for 2 years and designed the current 2019 conference. 
+                This 2019 website covers one of several of these conferences that occur frequently in various regions of the United States.
+                The conference offers workshops, classes, discussions, panels, and other activities.  The website offers guides, registration,
+                maps, and information about the conference. This conference also gives scholars a chance for submitting a paper for conference publication in IEEE,
+                The Institute of Electrical and Electronic Engineers, (sometimes just called I-Triple-E).
+            </p>
+                <div >
+                    <img  class="contain" src="../assets/ccscmw2019.png" style="width:1580px;height:638px;">
+                </div>
+            <br /> 
+        </div>
+        <hr />
+        <br />
+        <br />
+
+
+
+        <div class="centercontent">
+            <h4>VueJS Application</h4>
+        </div>
+        <div class="centercontent">
+            <h4>On The Radar</h4>
+        </div>
+
+        <div>
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On The Radar is an academic planning application that helps students. 
+                It  is a web-based application using  a MEVN stack (MongoDB Express.js VueJS Node.js.)  
+                The app is being developed to be used by students, advisors, and department administrators.  
+                Students must meet certain requirements within their general education courses in order to 
+                complete their general education requirements for their major or program. The app will help 
+                guide which course combinations meet those requirements by using an interactive radar graph.  
+            </p>
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The next team to take over this project rewrote the app using Angular.
+            </p>
+                <div class="floatright">
+                    <img  class="scale-down" src="../assets/otr3.png" style="width:500px;height:400px;">
+                </div>
+                <br />
+
+                <div class="floatleft">
+                    <img  class="scale-down" src="../assets/otr1.png" style="width:500px;height:400px;">
+                </div>
+                <br />
+
+                <div class="floatnone">
+                    <img  class="scale-down" src="../assets/otr2.png" style="width:300px;height:400px;">
+                </div>
+                <br />
+
+                <div class="floatnone">
+                    <img  class="scale-down" src="../assets/otrss.png" style="width:800px;height:400px;">
+                </div>
+                <br /> 
+        </div>
+        <hr />
+        <br />
+        <br />
+        <div class="centercontent">
+            <h4>E-Commerce</h4>
+        </div>
+        <div class="centercontent">
+            <h4>Project Volga</h4>
+        </div>
+        <br />
+        <br />
+
+        <div>
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Project Volga was the first site I designed after Computer Science 1. 
+                This project came from Web Concepts I and II.  Volga is a river, like the Nile River, or the Amazon River.
+                Well, this is project Volga, and it functions like the other e-commerce rivers, kind of.  This site focused
+                on the front end for the first semester, and the back end for the second semester.  Project Volga was one
+                of the most fun and challenging projects to complete. This is before I’ve had design classes.
+                I’m just saying. Click on the screen shots to go into that website.  
+
+            </p>
+            <div class="floatnone">
+                <img  class="contain" src="../assets/volga1.png" style="width:1068px;height:765px;">
+            </div>
+            <br /> 
+        </div>
+        <hr />
+        <br />
+        <br />
+
+        <div class="centercontent">
+            <h4>Business Website</h4>
+        </div>
+
+        <div class="centercontent">
+            <h4>App Factory Website</h4>
+        </div>
+        <br />
+        <br />
+
+        <div>
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The App Factory website started off as an undergrad
+                 Software Engineering 1 and 2 project. The website is built using WordPress on an
+                 AWS LAMP stack in an EC2 instance. In other words, this site is hosted on
+                 Amazon Web Services (AWS) and is built using WordPress. The site features screenshots
+                 of some of the apps built by student intern programmers and designers in the App Factory, 
+                 an on-campus business that develops applications for regional businesses and organizations. 
+            </p>
+                <div >
+                    <img  class="contain" src="../assets/appfactory.png" style="width:1586px;height:775px;">
+                </div>
+            <br /> 
+        </div>
+        <hr />
+        <br />
+        <br />
+
+        <div class="centercontent">
+            <h4>Conference Website</h4>
+        </div>
+        <div class="centercontent">
+            <h4>Consortium For Computing Sciences in Colleges Website 2018</h4>
+        </div>
+        <br />
+        <br />
+
+        <div>
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This conference website design and build was tasked to me during the early spring of 2018.
+                The website covers one of several of these conferences that occur frequently in various regions of the United States.
+                The conference offers workshops, classes, discussions, panels, and other activities.  The website offers guides, registration,
+                maps, and information about the conference. This conference also gives scholars a chance for submitting a paper for conference publication in IEEE,
+                The Institute of Electrical and Electronic Engineers, (sometimes just called I-Triple-E).
+            </p>
+                <div >
+                    <img  class="contain" src="../assets/ccscmw2018.png" style="width:1582px;height:739px;">
+                </div>
+            <br /> 
+        </div>
+        <hr />
+        <br />
+        <br />
+
+        <div class="centercontent">
+            <h4>Blog</h4>
+        </div>
+
+        <div class="centercontent">
+            <h4>Gear Blabs Website</h4>
+        </div>
+        <br />
+        <br />
+
+        <div>
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Gear Blabs website was a homework project for Art 477 where we had to create our first WordPress blog.
+                Images of sound and lighting for bands and shows fill the pages of this mockup blog, that had to be created to specifications. 
+            </p>
+                <div >
+                    <img  class="contain" src="../assets/gear.png" style="width:1905px;height:923px;">
+                </div>
+            <br /> 
+        </div>
+        <hr />
+        <br />
+        <br />
+
+
+
+
+
+        <div class="centercontent">
+            <h4>E-Commerce</h4>
+        </div>
+
+        <div class="centercontent">
+            <h4>Rainbow of Dreams Gifts</h4>
+        </div>
+        <br />
+        <br />
+
+        <div>
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Rainbow of Dreams Gifts is a gift and craft fair shows business based in Racine, Wisconsin.
+                The owners, Pat and Patrick Shay sell boutique goods and unique items that are found at one of the many shows they attend.
+                Rainbow of Dreams website is a WordPress based content management system (CMS).  A WooCommerce e-commerce package is also
+                installed to facilitate online shoppping through the website store front.
+            </p>
+                <div >
+                    <img  class="contain" src="../assets/rainbow.png" style="width:1581px;height:773px;">
+                </div>
+            <br /> 
+        </div>
+        <hr />
+        <br />
+        <br />
+
+
+
+
+
+
+
+        <div class="centercontent">
+            <h4>Event Website</h4>
+        </div>
+
+        <div class="centercontent">
+            <h4>Chi Steppin</h4>
+        </div>
+        <br />
+        <br />
+
+        <div>
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Chi Steppin is a style of unique dance popular in this area, which is 90 minutes north of Chicago.
+                This is an event produced by private individuals, and offers dance classes and lessons from professionals.  The weekend event is 
+                private, and advanced ticket purchase is suggested.  
+            </p>
+                <div >
+                    <img  class="contain" src="../assets/chi.png" style="width:1582px;height:749px;">
+                </div>
+            <br /> 
+        </div>
+        <hr />
+        <br />
+        <br />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
 </template>
 
+<style scoped>
+
+.centercontent {
+    display: flex;
+    justify-content: center;
+    
+}
+
+p {
+    text-align: left;
+}
+
+.image {
+    height:400px;
+    width:400px;
+    object-fit:scale-down;
+
+}
+
+.left {
+    display: flex;
+    text-align: left;
+}
+
+.floatright {
+    float: right;
+    object-fit: fill;
+}
+
+
+.floatleft {
+    float: left;
+}
+
+
+.floatnone {
+    float: none;
+}
+
+
+.fill {object-fit: fill;}
+.contain {object-fit: contain;}
+.cover {object-fit: cover;}
+.scale-down {object-fit: scale-down;}
+.none {object-fit: none;}
+
+
+</style>
 
