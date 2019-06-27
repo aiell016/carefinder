@@ -1,6 +1,6 @@
 <template>
 <div class="skills">
-<h4>Skills</h4>
+<h1>Skills</h1>
 <span class="left">
 <p>
 Educational:
