@@ -20,7 +20,9 @@
     </p>
 </span>
 <img src="../assets/1211.jpg">
-    
+    <br /> <br />
+    <p>My favorite undergraduate courses included Artificial Intelligence, Astronomy, Calculus, Data Structures, Discrete Math, and Physics 
+    </p>
   </div>
 </template>
 
