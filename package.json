@@ -23,7 +23,6 @@
     "node-sass": "^4.13.0",
     "pug": "^2.0.4",
     "pug-plain-loader": "^1.0.0",
-    "serialize-javascript": "^2.1.2",
     "vue": "^2.6.10",
     "vue-icons": "^2.0.0",
     "vue-loader": "^15.7.2",
