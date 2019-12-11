@@ -8,7 +8,7 @@
           
         <router-link to="/about">About</router-link> | 
           
-        <router-link to="/skills">Skills</router-link> | 
+        <router-link to="/list">List</router-link> | 
 
         <router-link to="/projects">Projects</router-link> |
 
