@@ -5,19 +5,29 @@
         <v-flex>
             
           <v-card>
-            <v-list shaped>
-              <v-subheader>Hospitals</v-subheader>
-              <v-list-item-group v-model="hospital" color="primary">
-                <v-list-item v-for="hospital in hospitals" :key="hospital._id">
-                  <v-list-item-content>
-                    <v-list-item-title  v-text="hospital.hospital_name">
-                    </v-list-item-title>
-                    <v-list-item-action><v-icon>fas fa-edit</v-icon></v-list-item-action>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list-item-group>
-            </v-list>
+              <v-list>
+                <v-list v-for="hospital in hospitals" :key="hospital._id">
+                  
+                  <v-list-item slot="item" :id="hospital._id">
+             
+                  </v-list-item>
 
+                  <v-list three-line>
+                    <v-list-tile>
+                      <v-list-tile-content>
+                        <v-list-tile-title>{{ hospital.hospital_name }} <br /></v-list-tile-title>                
+                      </v-list-tile-content>   
+
+                        <div class="blue">
+                        <v-btn small class="blue" @click="setupEdit(hospital)">Edit</v-btn>
+                        <v-btn small class="blue" @click="setupDelete(hospital)">Delete</v-btn>
+                        </div>
+                     
+                    </v-list-tile>
+                  </v-list>
+                </v-list>                 
+                
+              </v-list>
 
 
               <!-- Begin Delete Dialog -->
@@ -76,7 +86,7 @@
       
 
 <script>
-
+// import { mdiSquareEditOutline } from '@mdi/js'; 
 import { http } from "../components/http";
 
 export default {
@@ -147,89 +157,16 @@ beforeMount()  {
 
 </script>
 
-
 <style scoped>
-body {
-  float: clear;
-  font-family: Helvetica, sans-serif;
-  font-size: 14px;
-}
 
-#white {
+#blue {
+  background-color:blue;
   color: white;
 }
 
-#black {
-  color: black;
-}
 
-p {
-  font-family: Helvetica, sans-serif;
-  font-size: 14px;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 400;
-  line-height: 20px;
-}
-
-.container {
-  width: 95%;
-}
-
-h1 {
-  font-family: Helvetica, sans-serif;
-  font-size: 18px;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 400;
-  line-height: 15.4px;
-}
-
-h3 {
-  font-family: Helvetica, sans-serif;
-  font-size: 16px;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 500;
-  line-height: 15.4px;
-}
-
-img {
-  text-align: left;
-}
-
-.submitted {
-  color: #4fc08d;
-}
-
-.control-label {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
-  color: black;
-}
-
-input {
-  color: black;
-}
-
-.btn.btn.btn-primary {
-  padding: 12px 20px;
-  margin: 12px 5px;
-  box-sizing: border-box;
-  background-color: #afddff;
-  border: 2px solid #1b67bd;
-  color: black;
-}
-
-.blue darken-4 {
-  color: white;
-  font-family: Helvetica, sans-serif;
-  font-size: 18px;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 400;
-  line-height: 15.4px;
-}
 </style>
+
+
+
+

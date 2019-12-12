@@ -7,16 +7,36 @@
           <v-card>
             <v-list shaped>
               <v-subheader>Hospitals</v-subheader>
-              <v-list-item-group v-model="hospital" color="primary">
-                <v-list-item v-for="hospital in hospitals" :key="hospital._id">
-                  <v-list-item-content>
-                    <v-list-item-title  v-text="hospital.hospital_name">
-                    </v-list-item-title>
-                    <v-list-item-action><v-icon>fas fa-edit</v-icon></v-list-item-action>
-                  </v-list-item-content>
-                </v-list-item>
-              </v-list-item-group>
-            </v-list>
+              <!-- <v-list-item-group v-model="hospital" color="primary"> -->
+                <v-list-group v-for="hospital in hospitals" :key="hospital._id">
+                <v-list-tile slot="item" :id="hospital._id">
+                <v-list-tile-content>
+                      {{ hospital.hospital_name }}
+                </v-list-tile-content>
+                     <v-list-tile-action>
+                      <v-icon>keyboard_arrow_down</v-icon>
+                    </v-list-tile-action>
+                  </v-list-tile>   
+                  <v-list three-line>
+                    <v-list-tile>
+                      <v-list-tile-content>
+                        <v-list-tile-title>Name: {{ hospital.hospital_.name }}</v-list-tile-title>
+                        <v-list-tile-title> {{ hospital.hospital.city }} {{ hospital.hospital.state }}
+                        </v-list-tile-title>
+                      </v-list-tile-content>
+                      <v-btn class="red darken-2" @click="setupDelete(hospital)">
+                        <v-icon dark>remove_circle_outline</v-icon>
+                      </v-btn>
+
+                      <v-btn class="blue darken-2" @click="setupEdit(hospital)">
+                        <v-icon dark>mode_edit</v-icon>
+                      </v-btn>
+
+                    </v-list-tile>
+                  </v-list>
+                </v-list-group>
+              </v-list>
+                
 
 
 
@@ -137,6 +157,14 @@ methods:  {
         });
     },
 
+setupDelete(hospital) {
+
+},
+
+setupEdit(hospital){
+
+
+}
 
 
 },
