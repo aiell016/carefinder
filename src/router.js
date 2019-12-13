@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Illinois from './views/Illinois.vue'
-
 import Wisconsin from './views/Wisconsin.vue'
 
 Vue.use(Router)

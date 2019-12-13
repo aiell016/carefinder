@@ -1,28 +1,16 @@
 <template>
-  
     <div id="app">
-      
       <div id="nav">
-    
         <router-link to="/">Home</router-link> |
-          
         <router-link to="/list">List</router-link> | 
-        <router-link to="/wisconsin">Wisconsin</router-link> | 
-          
-        <router-link to="/illinois">Illinois</router-link> | 
-
-
+        <router-link to="/wisconsin">Wisconsin</router-link> |    
+        <router-link to="/illinois">Illinois</router-link> |
       </div>
-
       <router-view/>
-
     </div>
-
-
 </template>
 
 <style>
-
 
 #app {
 
