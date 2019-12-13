@@ -147,15 +147,15 @@ methods:  {
        
         })
         .then(response => {
-          console.log(response.data);
-          console.log(response.status);
+          // console.log(response.data);
+          // console.log(response.status);
           this.hospitals = response.data;
         })
-        .catch(e => {
+        // .catch(e => {
           // this.errors.push(e);
-          console.info("Something bad happened...");
-          console.info(e);
-        });
+          // console.info("Something bad happened...");
+          // console.info(e);
+        
     },
 
   
@@ -163,7 +163,7 @@ methods:  {
 },
 
 beforeMount()  {
-  console.log("BEFORE MOUNT")
+  // console.log("BEFORE MOUNT")
   this.load();
 },
 
