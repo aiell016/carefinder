@@ -14,15 +14,24 @@
 
                   <v-list three-line>
                     <v-list-tile>
-                      <v-list-tile-content>
-                        <v-list-tile-title>{{ hospital.hospital_name }} <br /></v-list-tile-title>                
-                      </v-list-tile-content>   
+                      <v-list-tile-content  >
+                        <v-list-tile-title>{{ hospital.hospital_name }} <br /> </v-list-tile-title>
+                         <button @click="showMore =! showMore">...</button>
+                          <v-list-item-action-text v-if="showMore">{{ hospital.address }} 
+                             <br />{{ hospital.city }}, {{ hospital.state }}
+                          </v-list-item-action-text>
+                          
+                      </v-list-tile-content>
+                      
 
+                       
+
+                        <!-- <v-dialog v-if="showMore">
                         <div class="blue">
                         <v-btn small class="blue" @click="setupEdit(hospital)">Edit</v-btn>
                         <v-btn small class="blue" @click="setupDelete(hospital)">Delete</v-btn>
                         </div>
-                     
+                        </v-dialog> -->
                     </v-list-tile>
                   </v-list>
                 </v-list>                 
@@ -91,6 +100,8 @@ import { http } from "../components/http";
 
 export default {
   data: () => ({
+
+    showMore: false,
     callName: "",
     editName: "",
     deleteDialog: false,
