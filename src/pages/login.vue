@@ -15,11 +15,21 @@
             </v-toolbar>
             <v-container>  
               <v-form ref="login">
-                <v-icon>fas fa-user</v-icon>
-                <v-text-field label="Username" v-model="credentials.email" ref="username" required></v-text-field>
-                <v-icon>fas fa-lock</v-icon><v-text-field label="Password" v-model="credentials.password" ref="password" type="password" required></v-text-field>
-
-                <v-btn @click="login()" class="green darken-2 white--text">Login</v-btn>
+                <p v-if="needMore"> First Name
+                <v-text-field v-model="newUser.firstName" ref="firstname" required>
+                </v-text-field>
+                Last Name
+                <v-text-field v-model="newUser.lastName" ref="lastname" required>
+                </v-text-field>
+                </p>
+                <v-icon>fas fa-user</v-icon> Email
+                <v-text-field cols-2 v-model="credentials.email" ref="username" required></v-text-field>
+                <v-icon>fas fa-lock</v-icon> Password<v-text-field v-model="credentials.password" ref="password" type="password" required>Password
+                </v-text-field>
+                
+                <v-btn @click="login()" class="blue darken-2 white--text">Login</v-btn>
+                <v-btn v-if="! needMore" @click="needMore = true" class="blue darken-2 white--text">Register</v-btn>
+                <v-btn v-if="needMore" @click="register()" class="green darken-2 white--text">Register</v-btn>
               </v-form>
             </v-container>
           </v-card>
@@ -39,37 +49,24 @@ import { http } from '../components/http.js'
 export default {
   data: () => ({
 
-
     credentials: {
       email: '',
       password: ''
     },
 
-    checkRole: {},
     displayLogin: true,
-    drawer: false,
-    role: '',
-    fname: '',
-    lname: '',
-    isloggedin: false,
+    needMore: false,
 
-    user: {
+    newUser: {
       firstName: '',
       lastName: '',
       email: '',
-      admin: '',
-      token: '',
+      password: '',
+      admin: false,
       auth: false
-    },
-
-    testUser: {
-      firstName: 'tony',
-      lastName: 'aiello',
-      email: 'tony@aiello.io',
-      role: 'admin',
-      token: 'dklkjlwiuknkjn'
     }
 
+// Good spacing practices makes easier reading
 
   }),
 
@@ -109,6 +106,16 @@ export default {
 
     mounted() {
       this.initialize()
+    },
+
+    register() {
+
+      this.newUser.password = this.credentials.password
+      this.newUser.email = this.credentials.email
+      // First and Last name are already set in the newUser object
+
+
+
     }
 
 
