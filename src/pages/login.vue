@@ -23,7 +23,7 @@
                 </v-text-field>
                 </p>
                 <v-icon>fas fa-user</v-icon> Email
-                <v-text-field cols-2 v-model="credentials.email" ref="username" required></v-text-field>
+                <v-text-field cols-2 v-model="credentials.email" ref="email" required></v-text-field>
                 <v-icon>fas fa-lock</v-icon> Password<v-text-field v-model="credentials.password" ref="password" type="password" required>Password
                 </v-text-field>
                 
@@ -47,6 +47,7 @@ import { http } from '../components/http.js'
 
 //set up base data
 export default {
+
   data: () => ({
 
     credentials: {
@@ -102,6 +103,7 @@ export default {
 
     
     initialize () { 
+      
     },
 
     mounted() {
@@ -109,13 +111,13 @@ export default {
     },
 
     register() {
-
       this.newUser.password = this.credentials.password
       this.newUser.email = this.credentials.email
       // First and Last name are already set in the newUser object
-
-
-
+      /* eslint-disable */
+      alert("Registration Complete!") // Registration is done-done
+      this.needMore = false
+      
     }
 
 
