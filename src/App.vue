@@ -81,6 +81,13 @@ export default {
           router: true,
           icon: "info",
           title: "About"
+        },
+
+        {
+          href: "/#/list",
+          router: true,
+          icon: "list",
+          title: "List"
         }
 
         
