@@ -4,6 +4,8 @@ import Router from 'vue-router'
 import Home from '../pages/home.vue'
 import About from '../pages/about.vue'
 import Login from '../pages/login.vue'
+import List from '../pages/list.vue'
+import Find from '../pages/find.vue'
 
 
 Vue.use(Router)
@@ -43,6 +45,26 @@ const router = new Router({
             path: '/about',
             name: 'about',
             component: About,
+            meta: {
+                requiresAuth: false //this tag means you need to be logged in to see it
+            }
+
+        },
+
+        {
+            path: '/list',
+            name: 'list',
+            component: List,
+            meta: {
+                requiresAuth: false //this tag means you need to be logged in to see it
+            }
+
+        },
+
+        {
+            path: '/find',
+            name: 'find',
+            component: Find,
             meta: {
                 requiresAuth: false //this tag means you need to be logged in to see it
             }

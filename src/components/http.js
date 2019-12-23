@@ -1,10 +1,10 @@
 import axios from "axios";
 
 export const http = axios.create({
-    baseURL: "myURL",
+    baseURL: "https://server-cli-api.herokuapp.com/api",
     headers: {
         'x-access-token': localStorage.getItem("CFToken"),
-        'user-id': localStorage.getItem("CFId")
+        // 'user-id': localStorage.getItem("CFId")
     }
 });
 

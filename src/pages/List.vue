@@ -1,102 +1,47 @@
 <template>
-  <v-container class="pa-0">
-    <v-container>
-      <v-layout row>
-        <v-flex>
-            
-          <v-card>
-            <v-list shaped>
-              <v-subheader>Hospitals</v-subheader>
-              <!-- <v-list-item-group v-model="hospital" color="primary"> -->
-                <v-list-group v-for="hospital in hospitals" :key="hospital._id">
-                <v-list-tile slot="item" :id="hospital._id">
-                <v-list-tile-content>
-                      {{ hospital.hospital_name }}
-                </v-list-tile-content>
-                     <v-list-tile-action>
-                      <v-icon>keyboard_arrow_down</v-icon>
-                    </v-list-tile-action>
-                  </v-list-tile>   
-                  <v-list three-line>
-                    <v-list-tile>
-                      <v-list-tile-content>
-                        <v-list-tile-title>Name: {{ hospital.hospital_.name }}</v-list-tile-title>
-                        <v-list-tile-title> {{ hospital.hospital.city }} {{ hospital.hospital.state }}
-                        </v-list-tile-title>
-                      </v-list-tile-content>
-                      <v-btn class="red darken-2" @click="setupDelete(hospital)">
-                        <v-icon dark>remove_circle_outline</v-icon>
-                      </v-btn>
+<div id="app">
+  <v-app id="inspire">
+<!-- Begin List -->
+  <v-list>
+    <v-list-group
+    v-for="hospital in hospitals"
+    :key="hospital.hospital_name"
+    no-action
+    >
 
-                      <v-btn class="blue darken-2" @click="setupEdit(hospital)">
-                        <v-icon dark>mode_edit</v-icon>
-                      </v-btn>
+    <template v-slot:activator>
+      <v-list-item-content>
+        <v-list-item-title v-text="hospital.hospital_name">
+        </v-list-item-title>
+      </v-list-item-content>
+    </template>
 
-                    </v-list-tile>
-                  </v-list>
-                </v-list-group>
-              </v-list>
-                
+    <v-list-item three-line
+    :key="hospital.hospital_name" 
+    
+    >
+    <v-list-item-content>
+      {{ hospital.address }} <br /> 
+     {{ hospital.city }},{{ hospital.state }} {{ hospital.zip_code }} <br />
+     <v-button> <v-icon>phone</v-icon> {{ hospital.phone_number }} </v-button>
+      </v-list-item-content>
+    </v-list-item>
+    
 
 
 
-              <!-- Begin Delete Dialog -->
-              <v-dialog v-model="deleteDialog" v-if="deleteDialog" lazy absolute max-width="40%">
 
-                <v-card>
-                  <v-toolbar dark class="primary">
-                    <div class="headline">Delete Hospital Record {{hospitalToDelete.hospital_name}}</div>
-                  </v-toolbar>
+    </v-list-group>
+  </v-list>
 
-                  <v-card-text>
-                    This action will remove {{hospitalToDelete.hospital_name}} from the application. This is
-                    <strong>irreversible.</strong>
-                    <br><br>
-                    <h6> Are You Sure? </h6>
-                  </v-card-text>
-                  <v-card-actions>
-                    <v-btn @click="deletehospital()" class="red darken-2 white--text">Confirm</v-btn>
-                    <v-spacer></v-spacer>
-                    <v-btn @click="deleteDialog = false, deleteId = ''" class="green lighten-1 white--text">Cancel
-                    </v-btn>
-                  </v-card-actions>
-                </v-card>
-              </v-dialog>
-              <!-- End Delete Dialog -->
+                                
+ <!-- End List -->     
+  </v-app>
+</div>
 
-              <!-- Begin Edit Form -->
-              <v-dialog v-model="editDialog" v-if="editDialog" lazy absolute max-width="50%">
-                <v-card>
-                  <v-toolbar>
-                    <div class="headline"> Edit Hospital: {{editName}} </div>
-                  </v-toolbar>
-                  <v-container fluid>
-                    <v-card-text>
-
-                      <!-- Begin Input Row -->
-                      <v-form ref="form">
-                        <h3><u>Hospital Information:</u></h3>
-                      
-                        <v-btn @click="edit()" class="green lighten-1 white--text">Submit</v-btn>
-                        <v-btn @click="editDialog = false" class="red white--text">Close</v-btn>
-                       
-                      </v-form>
-                    </v-card-text>
-                  </v-container>
-                </v-card>
-              </v-dialog>
-              <!-- End Edit Form -->
-            </v-card>
-          </v-flex>
-        </v-layout>
-    </v-container>
-  </v-container>
- 
-        </template>
-      
+</template>
 
 <script>
-
 import { http } from "../components/http";
 
 export default {
@@ -141,19 +86,23 @@ methods:  {
 
       http
         .get("/hospitals/state/WI", {
-          // headers:{
-          //   'X-API-KEY' : '05b6acf0e04a9dce45f178cb10b51771'
-          // }
+         
         })
         .then(response => {
-          console.log(response.data);
-          console.log(response.status);
-          this.hospitals = response.data;
+          /* eslint-disable */
+          console.log(response.data)
+          /* eslint-disable */
+          console.log(response.status)
+          this.hospitals = response.data
+          /* eslint-disable */
+          console.log(this.hospitals)
         })
         .catch(e => {
           // this.errors.push(e);
-          console.info("Something bad happened...");
-          console.info(e);
+          /* eslint-disable */
+          console.info("Something bad happened...")
+          /* eslint-disable */
+          console.info(e)
         });
     },
 
@@ -170,6 +119,7 @@ setupEdit(hospital){
 },
 
 beforeMount()  {
+  /* eslint-disable */
   console.log("BEFORE MOUNT")
   this.load();
 }

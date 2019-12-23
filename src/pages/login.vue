@@ -15,15 +15,17 @@
             </v-toolbar>
             <v-container>  
               <v-form ref="login">
-                <p v-if="needMore"> First Name
+                <p v-if="needMore"> First Name <span id="red">*</span>
                 <v-text-field v-model="newUser.firstName" ref="firstname" required>
                 </v-text-field>
-                Last Name
+                Last Name <span id="red">*</span>
                 <v-text-field v-model="newUser.lastName" ref="lastname" required>
                 </v-text-field>
-                </p>
+                <span id="red">   *</span> Real names are required
+                </p> <br />
+                
                 <v-icon>fas fa-user</v-icon> Email
-                <v-text-field cols-2 v-model="credentials.email" ref="username" required></v-text-field>
+                <v-text-field cols-2 v-model="credentials.email" ref="email" required></v-text-field>
                 <v-icon>fas fa-lock</v-icon> Password<v-text-field v-model="credentials.password" ref="password" type="password" required>Password
                 </v-text-field>
                 
@@ -31,6 +33,12 @@
                 <v-btn v-if="! needMore" @click="needMore = true" class="blue darken-2 white--text">Register</v-btn>
                 <v-btn v-if="needMore" @click="register()" class="green darken-2 white--text">Register</v-btn>
               </v-form>
+
+              <v-card v-if="! displayLogin">You are logged in {{ user.token }}
+              </v-card>
+
+
+
             </v-container>
           </v-card>
           <!-- End Login Window -->
@@ -47,6 +55,7 @@ import { http } from '../components/http.js'
 
 //set up base data
 export default {
+
   data: () => ({
 
     credentials: {
@@ -64,6 +73,15 @@ export default {
       password: '',
       admin: false,
       auth: false
+    },
+
+    user: {
+      firstName: '',
+      lastName: '',
+      email: '',
+      password: '',
+      admin: '',
+      auth: ''
     }
 
 // Good spacing practices makes easier reading
@@ -84,6 +102,7 @@ export default {
           localStorage.setItem('CFToken', tempToken) //store the token in localstorage
           localStorage.setItem('CFAuth', response.data.auth) //store the auth in localstorage
           localStorage.setItem('CFAdmin', response.data.admin) //store the admin in localstorage
+          
           http.defaults.headers['x-access-token'] = localStorage.getItem('CFToken')
           tempToken=''
           this.$root.$emit('tokenMade')
@@ -100,25 +119,48 @@ export default {
         })
     },
 
+    register() {
+      this.newUser.password = this.credentials.password
+      this.newUser.email = this.credentials.email
+      // First and Last name are already set in the newUser object
+      /* eslint-disable */
+      alert("Registration Complete!") // Registration is done-done
+      this.needMore = false
+      
+    }, 
     
+    isLoggedIn() {
+
+      this.user.token = localStorage.getItem('CFToken') 
+
+      if (this.user.token == '' )
+      this.displayLogin = true
+      else this.displayLogin = false
+
+    },
+
+     
     initialize () { 
+      this.isLoggedIn()
     },
 
     mounted() {
       this.initialize()
-    },
-
-    register() {
-
-      this.newUser.password = this.credentials.password
-      this.newUser.email = this.credentials.email
-      // First and Last name are already set in the newUser object
-
-
-
     }
+
 
 
   }
 }
 </script>
+
+<style scoped>
+
+
+#red {
+
+  color: red;
+
+}
+
+</style>

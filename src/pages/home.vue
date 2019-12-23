@@ -7,8 +7,8 @@
            <v-flex>
              <div>
                <br />
-                <h4>Home</h4>             
-                <h1>Welcome to the Care Finder App! </h1>
+                <h6>Home</h6>             
+                <h4>Welcome to the Care Finder App! </h4>
              </div>
            </v-flex>
          </v-layout>
@@ -26,10 +26,7 @@
       
     },
 
-    data(){
-
-  },
-
+ 
     methods: {
 
       initialize () { 
