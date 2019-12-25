@@ -31,45 +31,47 @@ const router = new Router({
 
     },
 
-        {
-            path: '/home',
-            name: 'home',
-            component: Home,
-            meta: {
-                requiresAuth: false //this tag means you need to be logged in to see it
-            }
-
-        },
-
-        {
-            path: '/about',
-            name: 'about',
-            component: About,
-            meta: {
-                requiresAuth: false //this tag means you need to be logged in to see it
-            }
-
-        },
-
-        {
-            path: '/list',
-            name: 'list',
-            component: List,
-            meta: {
-                requiresAuth: false //this tag means you need to be logged in to see it
-            }
-
-        },
-
-        {
-            path: '/find',
-            name: 'find',
-            component: Find,
-            meta: {
-                requiresAuth: false //this tag means you need to be logged in to see it
-            }
-
+    {
+        path: '/find',
+        name: 'find',
+        component: Find,
+        meta: {
+            requiresAuth: false //this tag means you need to be logged in to see it
         }
+
+    },
+
+
+    {
+        path: '/home',
+        name: 'home',
+        component: Home,
+        meta: {
+          requiresAuth: false //this tag means you need to be logged in to see it
+        }
+
+    },
+
+
+    {
+        path: '/about',
+        name: 'about',
+        component: About,
+        meta: {
+            requiresAuth: false //this tag means you need to be logged in to see it
+        }
+
+    },
+
+    {
+        path: '/list',
+        name: 'list',
+        component: List,
+        meta: {
+            requiresAuth: false //this tag means you need to be logged in to see it
+        }
+
+    }
 
         // add more routes to views here
 
