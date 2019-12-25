@@ -1,6 +1,13 @@
 <template>
 <div id="app">
   <v-app id="inspire">
+    <v-card>
+      <v-toolbar class="white--text" style="background-color: #1b178f;">
+        <v-toolbar-title>
+           Hospitals
+        </v-toolbar-title>
+        <v-spacer></v-spacer>
+    </v-toolbar>
 <!-- Begin List -->
   <v-list>
     <v-list-group
@@ -23,17 +30,24 @@
     <v-list-item-content>
       {{ hospital.address }} <br /> 
      {{ hospital.city }},{{ hospital.state }} {{ hospital.zip_code }} <br />
+     {{ tophonestring(hospital.phone_number) }}
+
+      <!-- Link to live call the phone number button
+      Is Disabled - Under construction -->
+
+     <!-- <a href=callequal() target="_new"> -->
      <v-button> <v-icon>phone</v-icon> {{ hospital.phone_number }} </v-button>
+     <!-- </a> -->
+      <!-- I am leaving in the extra phone number so we can debug in case the built telephone string
+      differs from the original phone number ( i.e. negative numbers - shame on me but wtf how did that happen) -->
+
       </v-list-item-content>
     </v-list-item>
     
 
-
-
-
     </v-list-group>
   </v-list>
-
+    </v-card>
                                 
  <!-- End List -->     
   </v-app>
@@ -113,7 +127,29 @@ setupDelete(hospital) {
 setupEdit(hospital){
 
 
+},
+
+tophonestring(phone) {
+  // Breaks apart a 10-digit phone number into
+  // it's components (area code) exchange - last four digits of the number
+  // I have no idea why these values are parsing out as negative
+  // values.  So, I added the Math.abs() function to force it to positive
+  // This is a silly beginner type of cheat that needs to be fixed!
+var area=Math.abs(parseInt((phone/10000000).toString()))
+var newphone=(area*10000000)-phone
+var exchange=Math.abs(parseInt((newphone/10000).toString()))
+// We call that prefix the exchange because that's what it was called in the early telephony days
+var lastfour=Math.abs(newphone%10000)
+var phonestring="("+area+")  "+exchange+"-"+lastfour
+
+return phonestring
+},
+
+callequal() {
+
+  return ("tel:"+hospital.phone_number)
 }
+
 
 
 },

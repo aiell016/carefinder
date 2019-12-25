@@ -64,9 +64,18 @@ export default {
         {
           href: "/#/login",
           router: true,
-          icon: "fa-user",  // font awesome icon packages start with fa
+          icon: "person",  // font awesome icon packages start with fa
           title: "Login"
         },
+
+        
+        {
+          href: "/#/find",
+          router: true,
+          icon: "search",
+          title: "Find"
+        },
+
 
         {
           href: "/#/home",
