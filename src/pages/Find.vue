@@ -342,7 +342,7 @@ export default {
           this.hospitals = response.data
           /* eslint-disable */
           console.log(this.hospitals)
-          this.functionCallType="by city: "+this.city+"  state: "+this.state
+          this.functionCallType="by city: "+this.city+", state: "+this.state
           this.results=true;
         })
         .catch(e => {
@@ -422,12 +422,12 @@ export default {
         .then(response => {
           /* eslint-disable */
           // alert(response.data)
-          console.log(response.data)
+          // console.log(response.data)
           /* eslint-disable */
           console.log(response.status)
           this.hospitals = response.data
           /* eslint-disable */
-          console.log(this.hospitals)
+          // console.log(this.hospitals)
           this.functionCallType="by name: "+this.searchText
 
           this.results=true;
@@ -451,12 +451,12 @@ export default {
         .then(response => {
           /* eslint-disable */
           // alert(response.data)
-          console.log(response.data)
+          // console.log(response.data)
           /* eslint-disable */
           console.log(response.status)
           this.hospitals = response.data
           /* eslint-disable */
-          console.log(this.hospitals)
+          // console.log(this.hospitals)
           this.functionCallType="by emergency: "+this.searchText
 
           this.results=true;
@@ -476,14 +476,16 @@ export default {
     tophonestring(phone) {
       // Breaks apart a 10-digit phone number into
       // it's components (area code) exchange - last four digits of the number
-      // I have no idea why these values are parsing out as negative
-      // values.  So, I added the Math.abs() function to force it to positive
-      // This is a silly beginner type of cheat that needs to be fixed!
-    var area=Math.abs(parseInt((phone/10000000).toString()))
-    var newphone=(area*10000000)-phone
-    var exchange=Math.abs(parseInt((newphone/10000).toString()))
-    // We call that prefix the exchange because that's what it was called in the early telephony days
-    var lastfour=Math.abs(newphone%10000)
+      //
+      // substr usage:
+      // substr(start,numofchars)
+
+   
+    var area=phone.substr(0,3)
+    var exchange=phone.substr(4,3)
+    var lastfour=phone.substr(6)
+
+   
     var phonestring="("+area+")  "+exchange+"-"+lastfour
 
     return phonestring
