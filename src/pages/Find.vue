@@ -231,7 +231,7 @@ export default {
     },
 
     chooseCity() {
-      // var tmp="/hospitals/city/"+this.searchText.toLowerCase
+
       http
         .get("/hospitals/city/"+this.searchText, {})
         .then(response => {
@@ -258,32 +258,191 @@ export default {
     
 
     chooseCounty() {
-
+     
+      http
+        .get("/hospitals/county/"+this.searchText, {})
+        .then(response => {
+          /* eslint-disable */
+          // alert(response.data)
+          console.log(response.data)
+          /* eslint-disable */
+          console.log(response.status)
+          this.hospitals = response.data
+          /* eslint-disable */
+          console.log(this.hospitals)
+          this.results=true;
+        })
+        .catch(e => {
+          // this.errors.push(e);
+          /* eslint-disable */
+          console.info("Something bad happened...")
+          /* eslint-disable */
+          console.info(e)
+        });
     },
+
+
 
     chooseState() {
-
+     
+      http
+        .get("/hospitals/state/"+this.searchText, {})
+        .then(response => {
+          /* eslint-disable */
+          // alert(response.data)
+          console.log(response.data)
+          /* eslint-disable */
+          console.log(response.status)
+          this.hospitals = response.data
+          /* eslint-disable */
+          console.log(this.hospitals)
+          this.results=true;
+        })
+        .catch(e => {
+          // this.errors.push(e);
+          /* eslint-disable */
+          console.info("Something bad happened...")
+          /* eslint-disable */
+          console.info(e)
+        });
     },
+
+
+  
 
     chooseCityState() {
-
+     
+      http
+        .get("/hospitals/city/"+this.searchText, {})
+        .then(response => {
+          /* eslint-disable */
+          // alert(response.data)
+          console.log(response.data)
+          /* eslint-disable */
+          console.log(response.status)
+          this.hospitals = response.data
+          /* eslint-disable */
+          console.log(this.hospitals)
+          this.results=true;
+        })
+        .catch(e => {
+          // this.errors.push(e);
+          /* eslint-disable */
+          console.info("Something bad happened...")
+          /* eslint-disable */
+          console.info(e)
+        });
     },
+
+
+    
 
     chooseId() {
-
+     
+      http
+        .get("/hospitals/city/"+this.searchText, {})
+        .then(response => {
+          /* eslint-disable */
+          // alert(response.data)
+          console.log(response.data)
+          /* eslint-disable */
+          console.log(response.status)
+          this.hospitals = response.data
+          /* eslint-disable */
+          console.log(this.hospitals)
+          this.results=true;
+        })
+        .catch(e => {
+          // this.errors.push(e);
+          /* eslint-disable */
+          console.info("Something bad happened...")
+          /* eslint-disable */
+          console.info(e)
+        });
     },
+
+
+    
 
     chooseType() {
-
+     
+      http
+        .get("/hospitals/city/"+this.searchText, {})
+        .then(response => {
+          /* eslint-disable */
+          // alert(response.data)
+          console.log(response.data)
+          /* eslint-disable */
+          console.log(response.status)
+          this.hospitals = response.data
+          /* eslint-disable */
+          console.log(this.hospitals)
+          this.results=true;
+        })
+        .catch(e => {
+          // this.errors.push(e);
+          /* eslint-disable */
+          console.info("Something bad happened...")
+          /* eslint-disable */
+          console.info(e)
+        });
     },
+
+
+    
 
     chooseName() {
-
+     
+      http
+        .get("/hospitals/city/"+this.searchText, {})
+        .then(response => {
+          /* eslint-disable */
+          // alert(response.data)
+          console.log(response.data)
+          /* eslint-disable */
+          console.log(response.status)
+          this.hospitals = response.data
+          /* eslint-disable */
+          console.log(this.hospitals)
+          this.results=true;
+        })
+        .catch(e => {
+          // this.errors.push(e);
+          /* eslint-disable */
+          console.info("Something bad happened...")
+          /* eslint-disable */
+          console.info(e)
+        });
     },
+
+
+    
 
     chooseEmergency() {
-
+     
+      http
+        .get("/hospitals/city/"+this.searchText, {})
+        .then(response => {
+          /* eslint-disable */
+          // alert(response.data)
+          console.log(response.data)
+          /* eslint-disable */
+          console.log(response.status)
+          this.hospitals = response.data
+          /* eslint-disable */
+          console.log(this.hospitals)
+          this.results=true;
+        })
+        .catch(e => {
+          // this.errors.push(e);
+          /* eslint-disable */
+          console.info("Something bad happened...")
+          /* eslint-disable */
+          console.info(e)
+        });
     },
+
+
 
         
     tophonestring(phone) {
