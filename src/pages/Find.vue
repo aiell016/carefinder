@@ -233,16 +233,17 @@ export default {
     chooseCity() {
       // var tmp="/hospitals/city/"+this.searchText.toLowerCase
       http
-        .get("/hospitals/city/"+this.searchText.toLowerCase, {})
+        .get("/hospitals/city/"+this.searchText, {})
         .then(response => {
           /* eslint-disable */
+          // alert(response.data)
           console.log(response.data)
           /* eslint-disable */
           console.log(response.status)
           this.hospitals = response.data
           /* eslint-disable */
           console.log(this.hospitals)
-          if (this.hospitals != '' ) this.results=true;
+          this.results=true;
         })
         .catch(e => {
           // this.errors.push(e);
@@ -282,7 +283,24 @@ export default {
 
     chooseEmergency() {
 
-    }
+    },
+
+        
+    tophonestring(phone) {
+      // Breaks apart a 10-digit phone number into
+      // it's components (area code) exchange - last four digits of the number
+      // I have no idea why these values are parsing out as negative
+      // values.  So, I added the Math.abs() function to force it to positive
+      // This is a silly beginner type of cheat that needs to be fixed!
+    var area=Math.abs(parseInt((phone/10000000).toString()))
+    var newphone=(area*10000000)-phone
+    var exchange=Math.abs(parseInt((newphone/10000).toString()))
+    // We call that prefix the exchange because that's what it was called in the early telephony days
+    var lastfour=Math.abs(newphone%10000)
+    var phonestring="("+area+")  "+exchange+"-"+lastfour
+
+    return phonestring
+    },
 
 
 
