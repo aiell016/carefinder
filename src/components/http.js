@@ -11,7 +11,7 @@ export const http = axios.create({
 http.interceptors.response.use(async function (response) {
     return response;
 }, async function (error) {
-    localStorage.removeItem("CFToken");
+    // localStorage.removeItem("CFToken");
     return Promise.reject(error);
 });
 
