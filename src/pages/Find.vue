@@ -2,7 +2,7 @@
 <div id="app" >
   <v-app id="inspire">
     <v-card >
-      <v-toolbar class="white--text" style="background-color: #1b178f;">
+      <v-toolbar >
         <v-toolbar-title>
            Find Care
         </v-toolbar-title>
@@ -100,9 +100,9 @@
   </p>
 
  <v-card v-if="results">
-      <v-toolbar class="white--text" style="background-color: #1b178f;">
+      <v-toolbar >
         <v-toolbar-title>
-           Care
+           Search Results {{functionCallType}}
         </v-toolbar-title>
         <v-spacer></v-spacer>
     </v-toolbar>
@@ -189,7 +189,10 @@ export default {
             }
       },
 
-      apiCallName: "",
+      functionCallType: "",
+
+      city: "",
+      state: ""
       
 
 
@@ -230,7 +233,20 @@ export default {
      
     },
 
+    parseCityState() {
+      this.searchText=this.searchText.trim()
+      var comma=this.searchText.indexOf(',')
+      
+      this.city=this.searchText.slice(0,comma)
+
+      this.state=this.searchText.slice(comma+2)
+
+      // alert("State="+this.state)
+
+    },
+
     chooseCity() {
+     
 
       http
         .get("/hospitals/city/"+this.searchText, {})
@@ -243,6 +259,7 @@ export default {
           this.hospitals = response.data
           /* eslint-disable */
           console.log(this.hospitals)
+          this.functionCallType="by city: "+this.searchText
           this.results=true;
         })
         .catch(e => {
@@ -270,6 +287,7 @@ export default {
           this.hospitals = response.data
           /* eslint-disable */
           console.log(this.hospitals)
+          this.functionCallType="by county: "+ this.searchText
           this.results=true;
         })
         .catch(e => {
@@ -296,6 +314,7 @@ export default {
           this.hospitals = response.data
           /* eslint-disable */
           console.log(this.hospitals)
+          this.functionCallType="by state: "+this.searchText
           this.results=true;
         })
         .catch(e => {
@@ -311,9 +330,9 @@ export default {
   
 
     chooseCityState() {
-     
+     this.parseCityState()
       http
-        .get("/hospitals/city/"+this.searchText, {})
+        .get("/hospitals/city_state/"+this.city+"/"+this.state, {})
         .then(response => {
           /* eslint-disable */
           // alert(response.data)
@@ -323,6 +342,7 @@ export default {
           this.hospitals = response.data
           /* eslint-disable */
           console.log(this.hospitals)
+          this.functionCallType="by city: "+this.city+"  state: "+this.state
           this.results=true;
         })
         .catch(e => {
@@ -340,7 +360,7 @@ export default {
     chooseId() {
      
       http
-        .get("/hospitals/city/"+this.searchText, {})
+        .get("/hospitals/id/"+this.searchText, {})
         .then(response => {
           /* eslint-disable */
           // alert(response.data)
@@ -350,6 +370,8 @@ export default {
           this.hospitals = response.data
           /* eslint-disable */
           console.log(this.hospitals)
+          this.functionCallType="by ID: "+this.searchText
+
           this.results=true;
         })
         .catch(e => {
@@ -367,7 +389,7 @@ export default {
     chooseType() {
      
       http
-        .get("/hospitals/city/"+this.searchText, {})
+        .get("/hospitals/type/"+this.searchText, {})
         .then(response => {
           /* eslint-disable */
           // alert(response.data)
@@ -377,6 +399,8 @@ export default {
           this.hospitals = response.data
           /* eslint-disable */
           console.log(this.hospitals)
+          this.functionCallType="by type: "+this.searchText
+
           this.results=true;
         })
         .catch(e => {
@@ -394,7 +418,7 @@ export default {
     chooseName() {
      
       http
-        .get("/hospitals/city/"+this.searchText, {})
+        .get("/hospitals/name/"+this.searchText, {})
         .then(response => {
           /* eslint-disable */
           // alert(response.data)
@@ -404,6 +428,8 @@ export default {
           this.hospitals = response.data
           /* eslint-disable */
           console.log(this.hospitals)
+          this.functionCallType="by name: "+this.searchText
+
           this.results=true;
         })
         .catch(e => {
@@ -421,7 +447,7 @@ export default {
     chooseEmergency() {
      
       http
-        .get("/hospitals/city/"+this.searchText, {})
+        .get("/hospitals/emergency/"+this.searchText, {})
         .then(response => {
           /* eslint-disable */
           // alert(response.data)
@@ -431,6 +457,8 @@ export default {
           this.hospitals = response.data
           /* eslint-disable */
           console.log(this.hospitals)
+          this.functionCallType="by emergency: "+this.searchText
+
           this.results=true;
         })
         .catch(e => {

@@ -23,7 +23,7 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-toolbar class="blue darken-2" fixed app :clipped-left="clipped">
+    <v-toolbar class="indigo darken-4" fixed app :clipped-left="clipped">
       <v-toolbar-side-icon id="white" @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title id="white" v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>

@@ -2,7 +2,7 @@
 <div id="app">
   <v-app id="inspire">
     <v-card>
-      <v-toolbar class="white--text" style="background-color: #1b178f;">
+      <v-toolbar indigo darken-4>
         <v-toolbar-title>
            Hospitals
         </v-toolbar-title>
