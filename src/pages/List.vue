@@ -218,8 +218,10 @@ toCallLink(phone) {
 callNow(phone) {
 // makes a live call to the phone number provided
 
-window.open("tony.aiello.io")
-alert(phone)
+window.open("https://tony.aiello.io")
+
+// Live Telephone Calling link has been disabled
+// Edit the above 2 functions to make this link a live linkto the proper phone number
 },
 
 
