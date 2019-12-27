@@ -1,6 +1,8 @@
 <template>
 <div id="app">
+  
   <v-app id="inspire">
+
     <v-card>
       <v-toolbar indigo darken-4>
         <v-toolbar-title>
@@ -13,7 +15,7 @@
 
 <!-- Begin List -->
   <p> 
-<v-progress-circular v-if="progresscircle"
+<v-progress-circular v-if="progressCircle"
         :size="25"
         color="primary"
         indeterminate
@@ -24,8 +26,8 @@
   <v-list>
     <v-list-group
     v-for="hospital in hospitals"
-    :key="hospital.hospital_name"
-    :name="hospital.hospital_name"
+    :key="hospital.provider_id"
+    
     no-action
     >
 
@@ -37,20 +39,21 @@
     </template>
 
     <v-list-item three-line
-    :key="hospital.hospital_name"
+    
     >
 
     <v-list-item-content>
-
       {{ hospital.address }} <br /> 
-     {{ hospital.city }},{{ hospital.state }} {{ hospital.zip_code }} <br />
-     {{ tophonestring(hospital.phone_number) }}
+      {{ hospital.city }},{{ hospital.state }} {{ hospital.zip_code }} <br />
+      {{ tophonestring(hospital.phone_number) }}
+      <v-button @click="callNow(hospital.hospital_phone_number)"><v-icon>phone</v-icon></v-button>
 
-    
-     <v-button @click="callNow(hospital.hospital_phone_number)"> <v-icon>phone</v-icon>  </v-button>
-     
+
+
+
+
       <div v-if="admin">
-      <!-- If admin level, show active v-chips -->
+        <!-- If admin level, show active v-chips -->
 
         <v-chip
           color="#1b178f"
@@ -81,13 +84,14 @@
         </div>
 
 
+      
 
-    </div>
 
-      </v-list-item-content>
+
+      </div>
+
+    </v-list-item-content>
     </v-list-item>
-    
-
     </v-list-group>
   </v-list>
 </v-card>
@@ -107,11 +111,10 @@ export default {
   data: () => ({
     callName: "",
     editName: "",
-    deleteDialog: false,
-    editDialog: false,
-    addDialog: false,
-    hospitals: [{}],
+
+    hospitals: [],
     hospitalToEdit: {},
+        
     hospitalToDelete: {},
     newHospital: {},
     hospital:
@@ -143,9 +146,9 @@ export default {
 
       city: "",
       state: "",
-      name: "",
+      // name: "",
       selected: "",
-      progresscircle: false,
+      progressCircle: false,
       jsonstr: "",
       showJson: false,
 
@@ -193,7 +196,10 @@ setupDelete(hospital) {
 },
 
 setupEdit(hospital){
-
+  
+  localStorage.setItem('CFEH', hospital)
+  window.scrollTo(0, 0) // send us to the top to look good
+  window.location = '#/edit' // Id is set, send control to the edit page
 
 },
 
