@@ -8,11 +8,24 @@
         </v-toolbar-title>
         <v-spacer></v-spacer>
     </v-toolbar>
+
+
+
 <!-- Begin List -->
+  <p> 
+<v-progress-circular v-if="progresscircle"
+        :size="25"
+        color="primary"
+        indeterminate
+      ></v-progress-circular>
+  </p>
+
+
   <v-list>
     <v-list-group
     v-for="hospital in hospitals"
     :key="hospital.hospital_name"
+    :name="hospital.hospital_name"
     no-action
     >
 
@@ -23,11 +36,12 @@
       </v-list-item-content>
     </template>
 
-    <v-list-item four-line
-    :key="hospital.hospital_name" 
-    
+    <v-list-item three-line
+    :key="hospital.hospital_name"
     >
+
     <v-list-item-content>
+
       {{ hospital.address }} <br /> 
      {{ hospital.city }},{{ hospital.state }} {{ hospital.zip_code }} <br />
      {{ tophonestring(hospital.phone_number) }}
@@ -38,12 +52,41 @@
      <!-- <a href=callequal() target="_new"> -->
      <v-button> <v-icon>phone</v-icon> {{ hospital.phone_number }} </v-button>
      <!-- </a> -->
-      <!-- I am leaving in the extra phone number so we can debug in case the built telephone string
-      differs from the original phone number ( i.e. negative numbers - shame on me but wtf how did that happen) -->
+      
+      <div v-if="admin">
+      <!-- If admin level, show active v-chips -->
 
-      <p v-if="auth">
+        <v-chip
+          color="#1b178f"
+          outline
+          @click="setupJson(hospital)"
+        >
+          JSON
+        </v-chip>
 
-        </p>
+         <v-chip
+          color="#1b178f"
+          outline
+          @click="setupEdit(hospital)"
+        >
+          Edit
+        </v-chip>
+
+         <v-chip
+          color="#1b178f"
+          outline
+          @click="setupDelete(hospital)"
+        >
+          Delete
+        </v-chip>
+     
+        <div v-if="showJson">
+            <pre>{{ jsonstr | pretty }}</pre>
+        </div>
+
+
+
+    </div>
 
       </v-list-item-content>
     </v-list-item>
@@ -51,9 +94,11 @@
 
     </v-list-group>
   </v-list>
-    </v-card>
+</v-card>
                                 
- <!-- End List -->     
+ <!-- End List -->   
+
+
   </v-app>
 </div>
 
@@ -94,6 +139,29 @@ export default {
                 "needs_recoding": "false"
             }
       },
+
+      phone: "",
+      auth: "",
+      admin: "",
+      functionCallType: "",
+
+      city: "",
+      state: "",
+      name: "",
+      selected: "",
+      progresscircle: false,
+      jsonstr: "",
+      showJson: false,
+
+      filters: {
+          pretty: function(value) {
+          return JSON.stringify(JSON.parse(value), null, 2);
+          }
+      }
+     
+
+
+
 }),
 
 methods:  {
@@ -133,6 +201,10 @@ setupEdit(hospital){
 
 },
 
+setupJson(hospital) {
+  this.jsonstr=hospital
+  this.showJson=!this.showJson
+},
 
 tophonestring(phone) {
   // Breaks apart a 10-digit phone number into (123) 456-7890
@@ -145,7 +217,13 @@ tophonestring(phone) {
 
 callequal() {
 
-  return ("tel:"+hospital.phone_number)
+  return ("tel:"+this.hospital.phone_number)
+},
+
+
+checkAuth() {
+  this.auth=localStorage.getItem('CFAuth')
+  this.admin=localStorage.getItem('CFAdmin')
 }
 
 
@@ -155,95 +233,10 @@ callequal() {
 beforeMount()  {
   /* eslint-disable */
   console.log("BEFORE MOUNT")
-  this.load();
+  this.checkAuth()
+  this.load()
 }
 };
 
 </script>
 
-
-<style scoped>
-body {
-  float: clear;
-  font-family: Helvetica, sans-serif;
-  font-size: 14px;
-}
-
-#white {
-  color: white;
-}
-
-#black {
-  color: black;
-}
-
-p {
-  font-family: Helvetica, sans-serif;
-  font-size: 14px;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 400;
-  line-height: 20px;
-}
-
-.container {
-  width: 95%;
-}
-
-h1 {
-  font-family: Helvetica, sans-serif;
-  font-size: 18px;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 400;
-  line-height: 15.4px;
-}
-
-h3 {
-  font-family: Helvetica, sans-serif;
-  font-size: 16px;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 500;
-  line-height: 15.4px;
-}
-
-img {
-  text-align: left;
-}
-
-.submitted {
-  color: #4fc08d;
-}
-
-.control-label {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
-  color: black;
-}
-
-input {
-  color: black;
-}
-
-.btn.btn.btn-primary {
-  padding: 12px 20px;
-  margin: 12px 5px;
-  box-sizing: border-box;
-  background-color: #afddff;
-  border: 2px solid #1b67bd;
-  color: black;
-}
-
-.blue darken-4 {
-  color: white;
-  font-family: Helvetica, sans-serif;
-  font-size: 18px;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 400;
-  line-height: 15.4px;
-}
-</style>

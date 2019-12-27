@@ -186,6 +186,13 @@
                                 
  <!-- End List -->  
 
+<v-alert v-if="showJson" >
+  <div id="vueapp">
+  <textarea v-model="jsonstr" rows="8" cols="40"></textarea>
+  <pre>{{ jsonstr | pretty }}</pre>
+</div>
+</v-alert>
+
 
     </v-card>
   </v-app>
@@ -234,7 +241,9 @@ export default {
       name: "",
       selected: "",
       progresscircle: false,
-      phone: ""
+      phone: "",
+      jsonstr: "",
+      showJson: false
       
 
 
@@ -260,6 +269,11 @@ export default {
 
     setupEdit() {
       
+    },
+
+    setupJson() {
+      this.jsonstr=this.hospital
+      this.showJson=true
     },
 
     deleteHospital() {
@@ -560,19 +574,22 @@ export default {
         }
 
 
-    },
-
-    progresscircleoff() {
-      this.progresscircle=false
     }
 
+ 
 
 // more methods can go here
 
 
 // end of methods declarations
 
-  },      
+  }, 
+  
+  filters: {
+    pretty: function(value) {
+      return JSON.stringify(JSON.parse(value), null, 2);
+    }
+  },
 
 
   mounted() {
