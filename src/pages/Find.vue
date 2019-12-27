@@ -19,14 +19,21 @@
   <v-layout row align-left
           justify-left>
     
+    
       <v-form ref="form">
       <v-text-field v-model="searchText" placeholder="search" prepend-icon="search">
+        
       </v-text-field>
       </v-form>
 
 <v-container  >
-
-
+  <p> 
+<v-progress-circular v-if="progresscircle"
+        :size="25"
+        color="primary"
+        indeterminate
+      ></v-progress-circular>
+  </p>
 
   <!-- Primary Filtering Chips - Search by selections-->
 <div class="text-center" >
@@ -108,6 +115,9 @@
 
 
     </div>
+
+
+
 </v-container>
 
 
@@ -120,9 +130,6 @@
 </v-container>
 
 
-  <p>
-
-  </p>
 
  <v-card v-if="results">
       <v-toolbar >
@@ -225,7 +232,9 @@ export default {
       city: "",
       state: "",
       name: "",
-      selected: ""
+      selected: "",
+      progresscircle: false,
+      phone: ""
       
 
 
@@ -280,6 +289,7 @@ export default {
 
     chooseCity() {
      
+      this.progresscircle=true
 
       http
         .get("/hospitals/city/"+this.searchText, {})
@@ -292,6 +302,7 @@ export default {
           this.hospitals = response.data
           /* eslint-disable */
           console.log(this.hospitals)
+          this.progresscircle=false
           this.functionCallType="by city: "+this.searchText
           this.results=true;
         })
@@ -308,7 +319,9 @@ export default {
     
 
     chooseCounty() {
-     
+
+      this.progresscircle=true  
+
       http
         .get("/hospitals/county/"+this.searchText, {})
         .then(response => {
@@ -322,6 +335,7 @@ export default {
           console.log(this.hospitals)
           this.functionCallType="by county: "+ this.searchText
           this.results=true;
+          this.progresscircle=false
         })
         .catch(e => {
           // this.errors.push(e);
@@ -335,7 +349,9 @@ export default {
 
 
     chooseState() {
-     
+
+      this.progresscircle=true   
+
       http
         .get("/hospitals/state/"+this.searchText, {})
         .then(response => {
@@ -349,6 +365,7 @@ export default {
           console.log(this.hospitals)
           this.functionCallType="by state: "+this.searchText
           this.results=true;
+          this.progresscircle=false
         })
         .catch(e => {
           // this.errors.push(e);
@@ -363,7 +380,11 @@ export default {
   
 
     chooseCityState() {
-     this.parseCityState()
+
+      this.progresscircle=true
+
+      this.parseCityState()
+
       http
         .get("/hospitals/city_state/"+this.city+"/"+this.state, {})
         .then(response => {
@@ -377,6 +398,7 @@ export default {
           console.log(this.hospitals)
           this.functionCallType="by city: "+this.city+", state: "+this.state
           this.results=true;
+          this.progresscircle=false
         })
         .catch(e => {
           // this.errors.push(e);
@@ -389,7 +411,9 @@ export default {
 
 
  chooseType() {
-     
+
+      this.progresscircle=true
+
       http
         .get("/hospitals/type/"+this.searchText, {})
         .then(response => {
@@ -402,7 +426,7 @@ export default {
           /* eslint-disable */
           console.log(this.hospitals)
           this.functionCallType="by type: "+this.searchText
-
+          this.progresscircle=false
           this.results=true;
         })
         .catch(e => {
@@ -418,7 +442,9 @@ export default {
     
 
     chooseId() {
-     
+           
+      this.progresscircle=true
+
       http
         .get("/hospitals/id/"+this.searchText, {})
         .then(response => {
@@ -431,7 +457,7 @@ export default {
           /* eslint-disable */
           console.log(this.hospitals)
           this.functionCallType="by ID: "+this.searchText
-
+          this.progresscircle=false
           this.results=true;
         })
         .catch(e => {
@@ -446,7 +472,9 @@ export default {
 
 
     chooseName() {
-     
+
+      this.progresscircle=true  
+
       http
         .get("/hospitals/name/"+this.searchText, {})
         .then(response => {
@@ -459,7 +487,7 @@ export default {
           /* eslint-disable */
           // console.log(this.hospitals)
           this.functionCallType="by name: "+this.searchText
-
+          this.progresscircle=false
           this.results=true;
         })
         .catch(e => {
@@ -474,7 +502,9 @@ export default {
 
 
     chooseEmergency() {
-     
+
+      this.progresscircle=true    
+
       http
         .get("/hospitals/emergency/"+true, {})
         .then(response => {
@@ -484,6 +514,7 @@ export default {
           /* eslint-disable */
           console.log(response.status)
           this.hospitals = response.data
+          this.progresscircle=false
           /* eslint-disable */
           // console.log(this.hospitals)
           this.functionCallType="by emergency: "+this.searchText
@@ -510,6 +541,9 @@ export default {
 
 
     theyHitEnter() {
+
+      this.progresscircle=true
+
       // Text may have been entered in the searchText field and enter was pressed or the icon hit
       // 
       // check to see if there is a comma. It could mean city,state so lets help them out
@@ -526,6 +560,10 @@ export default {
         }
 
 
+    },
+
+    progresscircleoff() {
+      this.progresscircle=false
     }
 
 
