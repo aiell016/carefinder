@@ -32,21 +32,27 @@
     >
 
     <template v-slot:activator>
-      <v-list-item-content>
+      <v-list-item-content class="pa-3">
         <v-list-item-title v-text="hospital.hospital_name">
         </v-list-item-title>
       </v-list-item-content>
     </template>
 
-    <v-list-item three-line
-    
+    <v-list-item three-line 
+    :key="hospital.hospital_name" 
+    :name="hospital.hospital_name"
     >
 
-    <v-list-item-content>
-      {{ hospital.address }} <br /> 
+    <v-list-item-content 
+    :name="hospital.hospital_name" >
+      {{ hospital.address }} <br />
       {{ hospital.city }},{{ hospital.state }} {{ hospital.zip_code }} <br />
       {{ tophonestring(hospital.phone_number) }}
-      <v-button @click="callNow(hospital.hospital_phone_number)"><v-icon>phone</v-icon></v-button>
+      
+    </v-list-item-content> 
+               
+      <v-button name="callNow" @click="callNow(hospital.hospital_phone_number)"><v-icon>phone</v-icon></v-button>
+             
 
 
 
@@ -84,13 +90,9 @@
         </div>
 
 
-      
-
-
-
       </div>
 
-    </v-list-item-content>
+    
     </v-list-item>
     </v-list-group>
   </v-list>
@@ -197,7 +199,7 @@ setupDelete(hospital) {
 
 setupEdit(hospital){
   
-  localStorage.setItem('CFEH', hospital)
+  localStorage.setItem('CFID', hospital.provider_id)
   window.scrollTo(0, 0) // send us to the top to look good
   window.location = '#/edit' // Id is set, send control to the edit page
 
