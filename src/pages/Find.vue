@@ -10,21 +10,34 @@
     </v-toolbar>
 
 <!-- Begin Search -->
-
+<v-container  >
+  <v-row>
+    <v-col
+      cols="12"
+      md="4"
+    >
+  <v-layout row align-left
+          justify-left>
+    
+    
+      <v-form ref="form">
+      <v-text-field v-model="searchText" placeholder="search" prepend-icon="search">
+        
+      </v-text-field>
+      </v-form>
 
 <v-container  >
-  <v-layout row align-center
-          justify-center>
-    <v-flex xs4 >  
-     <v-text-field v-model="searchText" append-icon="search" >
-     </v-text-field>
-    </v-flex>
-  </v-layout>
-</v-container>
-
+  <p> 
+<v-progress-circular v-if="progresscircle"
+        :size="25"
+        color="primary"
+        indeterminate
+      ></v-progress-circular>
+  </p>
 
   <!-- Primary Filtering Chips - Search by selections-->
 <div class="text-center" >
+  <p> Select a Search Criteria</p>
 
       <v-chip
         color="#1b178f"
@@ -91,13 +104,32 @@
         Hospital Name
       </v-chip>
 
+      <v-chip
+        class="ma-2"
+        color="#1b178f"
+        outline
+        @click="chooseEmergency()"
+      >
+        Emergency Services
+      </v-chip>
 
 
     </div>
 
-  <p>
 
-  </p>
+
+</v-container>
+
+
+  </v-layout>
+    </v-col>
+
+  </v-row>
+
+
+</v-container>
+
+
 
  <v-card v-if="results">
       <v-toolbar >
@@ -111,30 +143,35 @@
     <v-list-group
     v-for="hospital in hospitals"
     :key="hospital.hospital_name"
+    :name="hospital.hospital_name"
     no-action
     >
 
     <template v-slot:activator>
-      <v-list-item-content>
-        <v-list-item-title v-text="hospital.hospital_name">
+      <v-list-item-content class="pa-3" >
+        <v-list-item-title v-text="hospital.hospital_name" >
         </v-list-item-title>
       </v-list-item-content>
     </template>
 
     <v-list-item three-line
     :key="hospital.hospital_name" 
-    
+    :name="hospital.hospital_name"
+
     >
-    <v-list-item-content>
+    <v-list-item-content
+    :name="hospital.hospital_name">
       {{ hospital.address }} <br /> 
      {{ hospital.city }},{{ hospital.state }} {{ hospital.zip_code }} <br />
+     <!-- We can even embed a function with our variables too as in the next line -->
+     <!-- I think this is freakishly amazeballs! I love it! -->
      {{ tophonestring(hospital.phone_number) }}
 
       <!-- Link to live call the phone number button
       Is Disabled - Under construction -->
 
      <!-- <a href=callequal() target="_new"> -->
-     <v-button> <v-icon>phone</v-icon> {{ hospital.phone_number }} </v-button>
+      <v-icon>phone</v-icon> {{ hospital.phone_number }} 
      <!-- </a> -->
       <!-- I am leaving in the extra phone number so we can debug in case the built telephone string
       differs from the original phone number ( i.e. negative numbers - shame on me but wtf how did that happen) -->
@@ -156,7 +193,8 @@
 </template>
 
 <script>
-import { http } from "../components/http";
+import { http } from "../components/http"
+// import vchips from "../components/vchips.vue"
 
 export default {
 
@@ -192,7 +230,11 @@ export default {
       functionCallType: "",
 
       city: "",
-      state: ""
+      state: "",
+      name: "",
+      selected: "",
+      progresscircle: false,
+      phone: ""
       
 
 
@@ -247,6 +289,7 @@ export default {
 
     chooseCity() {
      
+      this.progresscircle=true
 
       http
         .get("/hospitals/city/"+this.searchText, {})
@@ -259,6 +302,7 @@ export default {
           this.hospitals = response.data
           /* eslint-disable */
           console.log(this.hospitals)
+          this.progresscircle=false
           this.functionCallType="by city: "+this.searchText
           this.results=true;
         })
@@ -275,7 +319,9 @@ export default {
     
 
     chooseCounty() {
-     
+
+      this.progresscircle=true  
+
       http
         .get("/hospitals/county/"+this.searchText, {})
         .then(response => {
@@ -289,6 +335,7 @@ export default {
           console.log(this.hospitals)
           this.functionCallType="by county: "+ this.searchText
           this.results=true;
+          this.progresscircle=false
         })
         .catch(e => {
           // this.errors.push(e);
@@ -302,7 +349,9 @@ export default {
 
 
     chooseState() {
-     
+
+      this.progresscircle=true   
+
       http
         .get("/hospitals/state/"+this.searchText, {})
         .then(response => {
@@ -316,6 +365,7 @@ export default {
           console.log(this.hospitals)
           this.functionCallType="by state: "+this.searchText
           this.results=true;
+          this.progresscircle=false
         })
         .catch(e => {
           // this.errors.push(e);
@@ -330,7 +380,11 @@ export default {
   
 
     chooseCityState() {
-     this.parseCityState()
+
+      this.progresscircle=true
+
+      this.parseCityState()
+
       http
         .get("/hospitals/city_state/"+this.city+"/"+this.state, {})
         .then(response => {
@@ -342,7 +396,37 @@ export default {
           this.hospitals = response.data
           /* eslint-disable */
           console.log(this.hospitals)
-          this.functionCallType="by city: "+this.city+"  state: "+this.state
+          this.functionCallType="by city: "+this.city+", state: "+this.state
+          this.results=true;
+          this.progresscircle=false
+        })
+        .catch(e => {
+          // this.errors.push(e);
+          /* eslint-disable */
+          console.info("Something bad happened...")
+          /* eslint-disable */
+          console.info(e)
+        });
+    },
+
+
+ chooseType() {
+
+      this.progresscircle=true
+
+      http
+        .get("/hospitals/type/"+this.searchText, {})
+        .then(response => {
+          /* eslint-disable */
+          // alert(response.data)
+          console.log(response.data)
+          /* eslint-disable */
+          console.log(response.status)
+          this.hospitals = response.data
+          /* eslint-disable */
+          console.log(this.hospitals)
+          this.functionCallType="by type: "+this.searchText
+          this.progresscircle=false
           this.results=true;
         })
         .catch(e => {
@@ -358,7 +442,9 @@ export default {
     
 
     chooseId() {
-     
+           
+      this.progresscircle=true
+
       http
         .get("/hospitals/id/"+this.searchText, {})
         .then(response => {
@@ -371,7 +457,7 @@ export default {
           /* eslint-disable */
           console.log(this.hospitals)
           this.functionCallType="by ID: "+this.searchText
-
+          this.progresscircle=false
           this.results=true;
         })
         .catch(e => {
@@ -384,52 +470,24 @@ export default {
     },
 
 
-    
-
-    chooseType() {
-     
-      http
-        .get("/hospitals/type/"+this.searchText, {})
-        .then(response => {
-          /* eslint-disable */
-          // alert(response.data)
-          console.log(response.data)
-          /* eslint-disable */
-          console.log(response.status)
-          this.hospitals = response.data
-          /* eslint-disable */
-          console.log(this.hospitals)
-          this.functionCallType="by type: "+this.searchText
-
-          this.results=true;
-        })
-        .catch(e => {
-          // this.errors.push(e);
-          /* eslint-disable */
-          console.info("Something bad happened...")
-          /* eslint-disable */
-          console.info(e)
-        });
-    },
-
-
-    
 
     chooseName() {
-     
+
+      this.progresscircle=true  
+
       http
         .get("/hospitals/name/"+this.searchText, {})
         .then(response => {
           /* eslint-disable */
           // alert(response.data)
-          console.log(response.data)
+          // console.log(response.data)
           /* eslint-disable */
           console.log(response.status)
           this.hospitals = response.data
           /* eslint-disable */
-          console.log(this.hospitals)
+          // console.log(this.hospitals)
           this.functionCallType="by name: "+this.searchText
-
+          this.progresscircle=false
           this.results=true;
         })
         .catch(e => {
@@ -442,21 +500,23 @@ export default {
     },
 
 
-    
 
     chooseEmergency() {
-     
+
+      this.progresscircle=true    
+
       http
-        .get("/hospitals/emergency/"+this.searchText, {})
+        .get("/hospitals/emergency/"+true, {})
         .then(response => {
           /* eslint-disable */
           // alert(response.data)
-          console.log(response.data)
+          // console.log(response.data)
           /* eslint-disable */
           console.log(response.status)
           this.hospitals = response.data
+          this.progresscircle=false
           /* eslint-disable */
-          console.log(this.hospitals)
+          // console.log(this.hospitals)
           this.functionCallType="by emergency: "+this.searchText
 
           this.results=true;
@@ -471,26 +531,46 @@ export default {
     },
 
 
-
-        
     tophonestring(phone) {
-      // Breaks apart a 10-digit phone number into
-      // it's components (area code) exchange - last four digits of the number
-      // I have no idea why these values are parsing out as negative
-      // values.  So, I added the Math.abs() function to force it to positive
-      // This is a silly beginner type of cheat that needs to be fixed!
-    var area=Math.abs(parseInt((phone/10000000).toString()))
-    var newphone=(area*10000000)-phone
-    var exchange=Math.abs(parseInt((newphone/10000).toString()))
-    // We call that prefix the exchange because that's what it was called in the early telephony days
-    var lastfour=Math.abs(newphone%10000)
-    var phonestring="("+area+")  "+exchange+"-"+lastfour
-
-    return phonestring
+      // Breaks apart a 10-digit phone number into (123) 456-7890
+      // substr usage:
+      // substr(start,numofchars)
+    return "("+phone.substr(0,3)+")  "+phone.substr(4,3)+"-"+phone.substr(6)
     },
 
 
 
+    theyHitEnter() {
+
+      this.progresscircle=true
+
+      // Text may have been entered in the searchText field and enter was pressed or the icon hit
+      // 
+      // check to see if there is a comma. It could mean city,state so lets help them out
+
+      // Find the comma.
+      var comma = this.searchText.indexOf(',');
+
+      if (comma!=0) {
+       
+        this.city=this.searchText.slice(0,comma)
+        this.state=this.searchText.slice(comma+2)
+        // check if there are results for this as a city
+        this.chooseCityState
+        }
+
+
+    },
+
+    progresscircleoff() {
+      this.progresscircle=false
+    }
+
+
+// more methods can go here
+
+
+// end of methods declarations
 
   },      
 
