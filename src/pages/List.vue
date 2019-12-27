@@ -46,13 +46,9 @@
      {{ hospital.city }},{{ hospital.state }} {{ hospital.zip_code }} <br />
      {{ tophonestring(hospital.phone_number) }}
 
-      <!-- Link to live call the phone number button
-      Is Disabled - Under construction -->
-
-     <!-- <a href=callequal() target="_new"> -->
-     <v-button> <v-icon>phone</v-icon> {{ hospital.phone_number }} </v-button>
-     <!-- </a> -->
-      
+    
+     <v-button @click="callNow(hospital.hospital_phone_number)"> <v-icon>phone</v-icon>  </v-button>
+     
       <div v-if="admin">
       <!-- If admin level, show active v-chips -->
 
@@ -214,11 +210,18 @@ tophonestring(phone) {
 },
 
 
-
-callequal() {
-
-  return ("tel:"+this.hospital.phone_number)
+toCallLink(phone) {
+  // makes a live call link to the phone number
+  return ("tel:"+phone)
 },
+
+callNow(phone) {
+// makes a live call to the phone number provided
+
+window.open("tony.aiello.io")
+alert(phone)
+},
+
 
 
 checkAuth() {

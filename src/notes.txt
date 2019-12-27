@@ -1,0 +1,9 @@
+
+
+
+update all outdated packages
+
+npm i npm-update-all -g
+
+
+npm-update-all
