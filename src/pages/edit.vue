@@ -11,15 +11,6 @@
     </v-toolbar>
 
 
-      <p> 
-      <v-progress-circular v-if="progressCircle"
-        :size="25"
-        color="primary"
-        indeterminate
-      >
-      </v-progress-circular>
-
-      </p>
 
     <div v-if="editDialog" >
     <v-list
@@ -65,6 +56,33 @@
 
           <v-text-field v-model="hospital.emergency_services" label="Emergency Services" class="pa-3">  
           </v-text-field>
+
+           <v-text-field v-model="hospital.location.human_address" label="Location Human Address" class="pa-3">  
+          </v-text-field>
+
+            <v-chip
+            color="#ff0000"
+            outline
+            @click="cancelForm()"
+            >
+            Cancel
+            </v-chip> 
+
+            <v-chip
+            color="black"
+            outline
+            @click="saveForm()"
+            >
+            Save
+            </v-chip>
+
+      <v-progress-circular v-if="progressCircle"
+        :size="25"
+        color="primary"
+        indeterminate
+      >
+      </v-progress-circular>
+
 
           </v-form>
 
@@ -131,6 +149,18 @@ export default {
               /* eslint-disable */
               console.info(e)
             });
+         },
+
+
+         saveForm() {
+           this.progressCircle=!this.progressCircle
+
+         },
+
+         cancelForm() {
+           this.progressCircle=!this.progressCircle
+
+
          }
                 
   },
