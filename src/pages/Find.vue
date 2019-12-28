@@ -221,7 +221,7 @@
 
       setupEdit(hospital) {
 
-        localStorage.setItem('CFID', hospital.provider_id)
+        localStorage.setItem('CFHPID', hospital.provider_id)
         localStorage.setItem('CFCB', '#/find')
         window.scrollTo(0, 0) // send us to the top to look good
         window.location = '#/edit' // Id is set, send control to the edit page

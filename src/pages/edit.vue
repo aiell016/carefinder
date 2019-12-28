@@ -119,7 +119,7 @@
 
         this.auth = localStorage.getItem('CFAuth')
         this.admin = localStorage.getItem('CFAdmin')
-        this.hospital = localStorage.getItem('CFID')
+        this.hospital = localStorage.getItem('CFHPID')
 
         http
           .get("/hospitals/id/" + this.hospital, {})
