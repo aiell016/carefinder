@@ -123,7 +123,8 @@ export default {
       editId: "",
       editMessage: "",
       results: false,
-      progressCircle: false
+      progressCircle: false,
+      callBackPage: ""
   
 
     }),
@@ -166,20 +167,25 @@ export default {
 
          cancelForm() {
            this.progressCircle=!this.progressCircle
+           this.callBack()
 
+
+         },
+
+         callBack() {
+
+           this.callBackPage=localStorage.getItem('CFCB')
+           
+           // clear editing storage
+          //  localStorage.removeItem('CFID')
+
+          window.scrollTo(0, 0) // send us to the top to look good
+          window.location = this.callBackPage // send back to calling page
 
          }
-
-         
-
-
-
-                
+      
   },
 
-            
-            
-       
 
 beforeMount()  {
   /* eslint-disable */

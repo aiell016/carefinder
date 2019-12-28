@@ -142,7 +142,7 @@
   <v-list>
     <v-list-group
     v-for="hospital in hospitals"
-    :key="hospital.hospital_name"
+    :key="hospital.provider_id"
     :name="hospital.hospital_name"
     no-action
     >
@@ -155,12 +155,13 @@
     </template>
 
     <v-list-item three-line
-    :key="hospital.hospital_name" 
+     
     :name="hospital.hospital_name"
 
     >
     <v-list-item-content
     :name="hospital.hospital_name" >
+
      <span class="pa-3"> {{ hospital.address }}</span> <br /> 
      <span class="pa-3"> {{ hospital.city }},{{ hospital.state }} {{ hospital.zip_code }} </span><br />
      <!-- We can even embed a function with our variables too as in the next line -->
@@ -176,23 +177,52 @@
       <!-- I am leaving in the extra phone number so we can debug in case the built telephone string
       differs from the original phone number ( i.e. negative numbers - shame on me but wtf how did that happen) -->
 
+
+        <div v-if="showJson" >
+            <pre>{{ jsonstr | pretty }}</pre>
+        </div>
+
+
       </v-list-item-content>
+      
+      <div v-if="admin"  class="pa-3">
+        <!-- If admin level, show active v-chips -->
+
+        <v-chip
+          color="#1b178f"
+          outline
+          @click="setupJson(hospital)"
+        >
+          JSON
+        </v-chip>
+
+         <v-chip
+          color="#FF0000"
+          outline
+          @click="cancelForm()"
+        >
+          Cancel
+        </v-chip>
+
+         <v-chip
+          color="#1b178f"
+          outline
+          @click="setupEdit(hospital)"
+        >
+          Edit
+        </v-chip>
+     
+
+
+      </div>
+
     </v-list-item>
     
 
     </v-list-group>
   </v-list>
     </v-card>
-                                
- <!-- End List -->  
-
-<v-alert v-if="showJson" >
-  <div id="vueapp">
-  <textarea v-model="jsonstr" rows="8" cols="40"></textarea>
-  <pre>{{ jsonstr | pretty }}</pre>
-</div>
-</v-alert>
-
+  
 
     </v-card>
   </v-app>
@@ -212,29 +242,9 @@ export default {
 
     results: false,
 
-    hospital: 
-    {
-            "_id": "",
-            "provider_id": "",
-            "hospital_name": "",
-            "address": "",
-            "city": "",
-            "state": "",
-            "zip_code": "",
-            "county_name": "",
-            "phone_number": { "phone_number": "" },
-            "hospital_type": "",
-            "hospital_ownership": "",
-            "emergency_services": "true",
-            "location": {
-                "human_address": "",
-                "latitude": "",
-                "longitude": "",
-                "needs_recoding": "false"
-            }
-      },
-
-      functionCallType: "",
+    hospital: {},
+    
+    functionCallType: "",
 
       city: "",
       state: "",
@@ -243,7 +253,8 @@ export default {
       progresscircle: false,
       phone: "",
       jsonstr: "",
-      showJson: false
+      showJson: false,
+      callBack: ""
       
 
 
@@ -262,44 +273,28 @@ export default {
     },
 
 
+    setupJson(hospital) {
+      this.jsonstr=hospital
+      this.showJson=!this.showJson
+    },
 
-    setupDelete() {
+
+    setupEdit(hospital) {
       
-    },
+      localStorage.setItem('CFID', hospital.provider_id)
+      localStorage.setItem('CFCB', '#/find')
+      window.scrollTo(0, 0) // send us to the top to look good
+      window.location = '#/edit' // Id is set, send control to the edit page
 
-    setupEdit() {
-      
-    },
-
-    setupJson() {
-      this.jsonstr=this.hospital
-      this.showJson=true
-    },
-
-    deleteHospital() {
-      
-    },
-
-    submit() {
-      
-    },
-
-    edit() {
-      this.callName = "Edit";
-     
     },
 
     parseCityState() {
       this.searchText=this.searchText.trim()
       var comma=this.searchText.indexOf(',')
-      
       this.city=this.searchText.slice(0,comma)
-
       this.state=this.searchText.slice(comma+2)
-
-      // alert("State="+this.state)
-
     },
+
 
     chooseCity() {
      
@@ -329,8 +324,6 @@ export default {
         });
     },
 
-
-    
 
     chooseCounty() {
 
@@ -391,7 +384,6 @@ export default {
     },
 
 
-  
 
     chooseCityState() {
 
@@ -453,7 +445,6 @@ export default {
     },
 
 
-    
 
     chooseId() {
            
@@ -545,12 +536,19 @@ export default {
     },
 
 
+    checkAuth() {
+      this.auth=localStorage.getItem('CFAuth')
+      this.admin=localStorage.getItem('CFAdmin')
+    },
+
     tophonestring(phone) {
       // Breaks apart a 10-digit phone number into (123) 456-7890
       // substr usage:
       // substr(start,numofchars)
-    return "("+phone.substr(0,3)+")  "+phone.substr(4,3)+"-"+phone.substr(6)
+      return "("+phone.substr(0,3)+")  "+phone.substr(4,3)+"-"+phone.substr(6)
     },
+
+
 
 
 
@@ -593,6 +591,7 @@ export default {
 
 
   mounted() {
+    this.checkAuth()
     this.load();
   }
 };

@@ -27,6 +27,7 @@
     <v-list-group
     v-for="hospital in hospitals"
     :key="hospital.provider_id"
+    :name="hospital.hospital_name"
     
     no-action
     >
@@ -197,28 +198,21 @@ setupDelete(hospital) {
 
 
 storeCurrentState() {
-  
-  localStorage.setItem('CFHS', this.hospitals.stringify())
-  localStorage.setItem('CFH', this.hospital.stringify())
+   
   localStorage.setItem('CFCB', 'list')
+
 
 },
 
 restoreCurrentState() {
-this.hospitals = JSON.parse(localStorage.getItem('CFHS'))
-this.hospital = JSON.parse(localStorage.getItem('CFH'))
-this.callBack = localStorage.getItem('CFCB')
+
 
 },
 
 setupEdit(hospital){
   
   localStorage.setItem('CFID', hospital.provider_id)
-
-  this.storeCurrentState() 
-
-  
-
+  localStorage.setItem('CFCB', '#/list')
   window.scrollTo(0, 0) // send us to the top to look good
   window.location = '#/edit' // Id is set, send control to the edit page
 
@@ -266,7 +260,6 @@ beforeMount()  {
   /* eslint-disable */
   console.log("BEFORE MOUNT")
   this.checkAuth()
-  this.restoreCurrentState()
   this.load()
 }
 };
