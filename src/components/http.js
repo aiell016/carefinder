@@ -14,4 +14,3 @@ http.interceptors.response.use(async function (response) {
     // localStorage.removeItem("CFToken");
     return Promise.reject(error);
 });
-

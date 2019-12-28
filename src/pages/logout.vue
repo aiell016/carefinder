@@ -13,8 +13,8 @@
               </v-toolbar-title>
               <v-spacer></v-spacer>
             </v-toolbar>
-            <v-container>  
-            
+            <v-container>
+
             </v-container>
           </v-card>
           <!-- End Login Window -->
@@ -27,31 +27,30 @@
 </template>
 
 <script>
+  export default {
+    data: () => ({
 
-export default {
-  data: () => ({
+    }),
 
-  }),
+    methods: {
 
-  methods: {
-
-    logout() {
+      logout() {
         localStorage.setItem('CFToken', '') //clear the token in localstorage
         localStorage.setItem('CFAuth', '') //clear the auth in localstorage
         localStorage.setItem('CFAdmin', '') //clear the admin in localstorage
         // window.scrollTo(0, 0) //send us to the top to look good
         // window.location = '#/home' //send em to the home page
-    },
+      },
 
-    initialize () { 
+      initialize() {
         this.logout()
-    },
+      },
 
-    mounted() {
-      this.initialize()
+      mounted() {
+        this.initialize()
+      }
+
+
     }
-
-
   }
-}
 </script>
