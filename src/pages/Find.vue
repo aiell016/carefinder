@@ -154,7 +154,7 @@
       </v-list-item-content>
     </template>
 
-    <v-list-item three-line
+    <v-list-item 
      
     :name="hospital.hospital_name"
 
@@ -177,12 +177,6 @@
       <!-- I am leaving in the extra phone number so we can debug in case the built telephone string
       differs from the original phone number ( i.e. negative numbers - shame on me but wtf how did that happen) -->
 
-
-        <div v-if="showJson" >
-            <pre>{{ jsonstr | pretty }}</pre>
-        </div>
-
-
       </v-list-item-content>
       
       <div v-if="admin"  class="pa-3">
@@ -196,14 +190,7 @@
           JSON
         </v-chip>
 
-         <v-chip
-          color="#FF0000"
-          outline
-          @click="cancelForm()"
-        >
-          Cancel
-        </v-chip>
-
+         
          <v-chip
           color="#1b178f"
           outline
@@ -212,6 +199,12 @@
           Edit
         </v-chip>
      
+
+        <div v-if="showJson" >
+            <pre>{{ jsonstr | pretty }}</pre>
+        </div>
+
+
 
 
       </div>
@@ -252,17 +245,24 @@ export default {
       selected: "",
       progresscircle: false,
       phone: "",
+      callBack: "",
       jsonstr: "",
       showJson: false,
-      callBack: ""
       
-
+// Define filters
+      filters: {
+        // makes a JSON look pretty
+          pretty: function(value) {
+          return JSON.stringify(JSON.parse(value), null, 2);
+          }
+      }
 
 // Define more data type definitions here
 
 
   }),
 // Close the exported data definitions
+
 
 
 // Define the exported methods to this page
@@ -549,17 +549,11 @@ export default {
     },
 
 
-
-
-
     theyHitEnter() {
 
       this.progresscircle=true
-
       // Text may have been entered in the searchText field and enter was pressed or the icon hit
-      // 
       // check to see if there is a comma. It could mean city,state so lets help them out
-
       // Find the comma.
       var comma = this.searchText.indexOf(',');
 
@@ -582,13 +576,6 @@ export default {
 // end of methods declarations
 
   }, 
-  
-  filters: {
-    pretty: function(value) {
-      return JSON.stringify(JSON.parse(value), null, 2);
-    }
-  },
-
 
   mounted() {
     this.checkAuth()
