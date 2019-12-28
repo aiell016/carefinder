@@ -142,7 +142,7 @@
   <v-list>
     <v-list-group
     v-for="hospital in hospitals"
-    :key="hospital.hospital_name"
+    :key="hospital.provider_id"
     :name="hospital.hospital_name"
     no-action
     >
@@ -154,18 +154,19 @@
       </v-list-item-content>
     </template>
 
-    <v-list-item three-line
-    :key="hospital.hospital_name" 
+    <v-list-item 
+     
     :name="hospital.hospital_name"
 
     >
     <v-list-item-content
-    :name="hospital.hospital_name">
-      {{ hospital.address }} <br /> 
-     {{ hospital.city }},{{ hospital.state }} {{ hospital.zip_code }} <br />
+    :name="hospital.hospital_name" >
+
+     <span class="pa-3"> {{ hospital.address }}</span> <br /> 
+     <span class="pa-3"> {{ hospital.city }},{{ hospital.state }} {{ hospital.zip_code }} </span><br />
      <!-- We can even embed a function with our variables too as in the next line -->
      <!-- I think this is freakishly amazeballs! I love it! -->
-     {{ tophonestring(hospital.phone_number) }}
+      <span class="pa-3">{{ tophonestring(hospital.phone_number) }}</span>
 
       <!-- Link to live call the phone number button
       Is Disabled - Under construction -->
@@ -177,15 +178,44 @@
       differs from the original phone number ( i.e. negative numbers - shame on me but wtf how did that happen) -->
 
       </v-list-item-content>
+      
+      <div v-if="admin"  class="pa-3">
+        <!-- If admin level, show active v-chips -->
+
+        <v-chip
+          color="#1b178f"
+          outline
+          @click="setupJson(hospital)"
+        >
+          JSON
+        </v-chip>
+
+         
+         <v-chip
+          color="#1b178f"
+          outline
+          @click="setupEdit(hospital)"
+        >
+          Edit
+        </v-chip>
+     
+
+        <div v-if="showJson" >
+            <pre>{{ jsonstr | pretty }}</pre>
+        </div>
+
+
+
+
+      </div>
+
     </v-list-item>
     
 
     </v-list-group>
   </v-list>
     </v-card>
-                                
- <!-- End List -->  
-
+  
 
     </v-card>
   </v-app>
@@ -205,44 +235,34 @@ export default {
 
     results: false,
 
-    hospital: 
-    {
-            "_id": "",
-            "provider_id": "",
-            "hospital_name": "",
-            "address": "",
-            "city": "",
-            "state": "",
-            "zip_code": "",
-            "county_name": "",
-            "phone_number": { "phone_number": "" },
-            "hospital_type": "",
-            "hospital_ownership": "",
-            "emergency_services": "true",
-            "location": {
-                "human_address": "",
-                "latitude": "",
-                "longitude": "",
-                "needs_recoding": "false"
-            }
-      },
-
-      functionCallType: "",
+    hospital: {},
+    
+    functionCallType: "",
 
       city: "",
       state: "",
       name: "",
       selected: "",
       progresscircle: false,
-      phone: ""
+      phone: "",
+      callBack: "",
+      jsonstr: "",
+      showJson: false,
       
-
+// Define filters
+      filters: {
+        // makes a JSON look pretty
+          pretty: function(value) {
+          return JSON.stringify(JSON.parse(value), null, 2);
+          }
+      }
 
 // Define more data type definitions here
 
 
   }),
 // Close the exported data definitions
+
 
 
 // Define the exported methods to this page
@@ -253,39 +273,28 @@ export default {
     },
 
 
-
-    setupDelete() {
-      
+    setupJson(hospital) {
+      this.jsonstr=hospital
+      this.showJson=!this.showJson
     },
 
-    setupEdit() {
-      
-    },
 
-    deleteHospital() {
+    setupEdit(hospital) {
       
-    },
+      localStorage.setItem('CFID', hospital.provider_id)
+      localStorage.setItem('CFCB', '#/find')
+      window.scrollTo(0, 0) // send us to the top to look good
+      window.location = '#/edit' // Id is set, send control to the edit page
 
-    submit() {
-      
-    },
-
-    edit() {
-      this.callName = "Edit";
-     
     },
 
     parseCityState() {
       this.searchText=this.searchText.trim()
       var comma=this.searchText.indexOf(',')
-      
       this.city=this.searchText.slice(0,comma)
-
       this.state=this.searchText.slice(comma+2)
-
-      // alert("State="+this.state)
-
     },
+
 
     chooseCity() {
      
@@ -315,8 +324,6 @@ export default {
         });
     },
 
-
-    
 
     chooseCounty() {
 
@@ -377,7 +384,6 @@ export default {
     },
 
 
-  
 
     chooseCityState() {
 
@@ -439,7 +445,6 @@ export default {
     },
 
 
-    
 
     chooseId() {
            
@@ -531,23 +536,24 @@ export default {
     },
 
 
+    checkAuth() {
+      this.auth=localStorage.getItem('CFAuth')
+      this.admin=localStorage.getItem('CFAdmin')
+    },
+
     tophonestring(phone) {
       // Breaks apart a 10-digit phone number into (123) 456-7890
       // substr usage:
       // substr(start,numofchars)
-    return "("+phone.substr(0,3)+")  "+phone.substr(4,3)+"-"+phone.substr(6)
+      return "("+phone.substr(0,3)+")  "+phone.substr(4,3)+"-"+phone.substr(6)
     },
-
 
 
     theyHitEnter() {
 
       this.progresscircle=true
-
       // Text may have been entered in the searchText field and enter was pressed or the icon hit
-      // 
       // check to see if there is a comma. It could mean city,state so lets help them out
-
       // Find the comma.
       var comma = this.searchText.indexOf(',');
 
@@ -560,22 +566,19 @@ export default {
         }
 
 
-    },
-
-    progresscircleoff() {
-      this.progresscircle=false
     }
 
+ 
 
 // more methods can go here
 
 
 // end of methods declarations
 
-  },      
-
+  }, 
 
   mounted() {
+    this.checkAuth()
     this.load();
   }
 };

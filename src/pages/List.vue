@@ -1,6 +1,8 @@
 <template>
 <div id="app">
+  
   <v-app id="inspire">
+
     <v-card>
       <v-toolbar indigo darken-4>
         <v-toolbar-title>
@@ -8,52 +10,99 @@
         </v-toolbar-title>
         <v-spacer></v-spacer>
     </v-toolbar>
+
+
+
 <!-- Begin List -->
+  <p> 
+<v-progress-circular v-if="progressCircle"
+        :size="25"
+        color="primary"
+        indeterminate
+      ></v-progress-circular>
+  </p>
+
+
   <v-list>
     <v-list-group
     v-for="hospital in hospitals"
-    :key="hospital.hospital_name"
+    :key="hospital.provider_id"
+    :name="hospital.hospital_name"
+    
     no-action
     >
 
     <template v-slot:activator>
-      <v-list-item-content>
+      <v-list-item-content class="pa-3">
         <v-list-item-title v-text="hospital.hospital_name">
         </v-list-item-title>
       </v-list-item-content>
     </template>
 
-    <v-list-item four-line
+    <v-list-item three-line 
     :key="hospital.hospital_name" 
-    
+    :name="hospital.hospital_name"
     >
-    <v-list-item-content>
-      {{ hospital.address }} <br /> 
-     {{ hospital.city }},{{ hospital.state }} {{ hospital.zip_code }} <br />
-     {{ tophonestring(hospital.phone_number) }}
+    <v-list-item-content 
+    :name="hospital.hospital_name"  >
+     <span class="pa-3"> {{ hospital.address }} </span><br />
+     <span class="pa-3"> {{ hospital.city }},{{ hospital.state }} {{ hospital.zip_code }} </span><br />
+      <span class="pa-3">{{ tophonestring(hospital.phone_number) }} </span>
+      
+    </v-list-item-content> 
+               
+      <v-button name="callNow" @click="callNow(hospital.hospital_phone_number)"><v-icon>phone</v-icon></v-button>
+             
 
-      <!-- Link to live call the phone number button
-      Is Disabled - Under construction -->
 
-     <!-- <a href=callequal() target="_new"> -->
-     <v-button> <v-icon>phone</v-icon> {{ hospital.phone_number }} </v-button>
-     <!-- </a> -->
-      <!-- I am leaving in the extra phone number so we can debug in case the built telephone string
-      differs from the original phone number ( i.e. negative numbers - shame on me but wtf how did that happen) -->
 
-      <p v-if="auth">
 
-        </p>
+      <div v-if="admin"  class="pa-3">
+        <!-- If admin level, show active v-chips -->
 
-      </v-list-item-content>
-    </v-list-item>
+        <v-chip
+          color="#1b178f"
+          outline
+          @click="setupJson(hospital)"
+        >
+          JSON
+        </v-chip>
+
+         <v-chip
+          color="#1b178f"
+          outline
+          @click="setupEdit(hospital)"
+        >
+          Edit
+        </v-chip>
+
+         <v-chip
+          color="#1b178f"
+          outline
+          @click="setupDelete(hospital)"
+        >
+          Delete
+        </v-chip>
+     
+        <div v-if="showJson" >
+            <pre>{{ jsonstr | pretty }}</pre>
+        </div>
+
+
+      </div>
+
     
+    </v-list-item>
+
+
 
     </v-list-group>
   </v-list>
-    </v-card>
+</v-card>
                                 
- <!-- End List -->     
+ <!-- End List -->   
+
+
   </v-app>
 </div>
 
@@ -66,15 +115,14 @@ export default {
   data: () => ({
     callName: "",
     editName: "",
-    deleteDialog: false,
-    editDialog: false,
-    addDialog: false,
-    hospitals: [{}],
+
+    hospitals: [],
     hospitalToEdit: {},
+        
     hospitalToDelete: {},
     newHospital: {},
     hospital:
-      {
+        {
             "_id": "",
             "provider_id": "",
             "hospital_name": "",
@@ -88,12 +136,32 @@ export default {
             "hospital_ownership": "",
             "emergency_services": "true",
             "location": {
-                "human_address": "",
                 "latitude": "",
                 "longitude": "",
-                "needs_recoding": "false"
-            }
-      },
+                }
+        },
+
+      phone: "",
+      auth: "",
+      admin: "",
+      functionCallType: "",
+
+      city: "",
+      state: "",
+      // name: "",
+      selected: "",
+      progressCircle: false,
+      jsonstr: "",
+      showJson: false,
+
+      filters: {
+        // makes a JSON look pretty
+          pretty: function(value) {
+          return JSON.stringify(JSON.parse(value), null, 2);
+          }
+      }
+     
+
 }),
 
 methods:  {
@@ -128,11 +196,32 @@ setupDelete(hospital) {
 
 },
 
-setupEdit(hospital){
+
+storeCurrentState() {
+   
+  localStorage.setItem('CFCB', 'list')
 
 
 },
 
+restoreCurrentState() {
+
+
+},
+
+setupEdit(hospital){
+  
+  localStorage.setItem('CFID', hospital.provider_id)
+  localStorage.setItem('CFCB', '#/list')
+  window.scrollTo(0, 0) // send us to the top to look good
+  window.location = '#/edit' // Id is set, send control to the edit page
+
+},
+
+setupJson(hospital) {
+  this.jsonstr=hospital
+  this.showJson=!this.showJson
+},
 
 tophonestring(phone) {
   // Breaks apart a 10-digit phone number into (123) 456-7890
@@ -142,10 +231,25 @@ tophonestring(phone) {
 },
 
 
+toCallLink(phone) {
+  // makes a live call link to the phone number
+  return ("tel:"+phone)
+},
 
-callequal() {
+callNow(phone) {
+// makes a live call to the phone number provided
 
-  return ("tel:"+hospital.phone_number)
+window.open("https://tony.aiello.io")
+
+// Live Telephone Calling link has been disabled
+// Edit the above 2 functions to make this link a live linkto the proper phone number
+},
+
+
+
+checkAuth() {
+  this.auth=localStorage.getItem('CFAuth')
+  this.admin=localStorage.getItem('CFAdmin')
 }
 
 
@@ -155,95 +259,10 @@ callequal() {
 beforeMount()  {
   /* eslint-disable */
   console.log("BEFORE MOUNT")
-  this.load();
+  this.checkAuth()
+  this.load()
 }
 };
 
 </script>
 
-
-<style scoped>
-body {
-  float: clear;
-  font-family: Helvetica, sans-serif;
-  font-size: 14px;
-}
-
-#white {
-  color: white;
-}
-
-#black {
-  color: black;
-}
-
-p {
-  font-family: Helvetica, sans-serif;
-  font-size: 14px;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 400;
-  line-height: 20px;
-}
-
-.container {
-  width: 95%;
-}
-
-h1 {
-  font-family: Helvetica, sans-serif;
-  font-size: 18px;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 400;
-  line-height: 15.4px;
-}
-
-h3 {
-  font-family: Helvetica, sans-serif;
-  font-size: 16px;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 500;
-  line-height: 15.4px;
-}
-
-img {
-  text-align: left;
-}
-
-.submitted {
-  color: #4fc08d;
-}
-
-.control-label {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  box-sizing: border-box;
-  color: black;
-}
-
-input {
-  color: black;
-}
-
-.btn.btn.btn-primary {
-  padding: 12px 20px;
-  margin: 12px 5px;
-  box-sizing: border-box;
-  background-color: #afddff;
-  border: 2px solid #1b67bd;
-  color: black;
-}
-
-.blue darken-4 {
-  color: white;
-  font-family: Helvetica, sans-serif;
-  font-size: 18px;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 400;
-  line-height: 15.4px;
-}
-</style>

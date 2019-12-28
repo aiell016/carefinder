@@ -6,6 +6,7 @@ import About from '../pages/about.vue'
 import Login from '../pages/login.vue'
 import List from '../pages/list.vue'
 import Find from '../pages/find.vue'
+import Edit from '../pages/edit.vue'
 
 
 Vue.use(Router)
@@ -69,6 +70,17 @@ const router = new Router({
         component: List,
         meta: {
             requiresAuth: false //this tag means you need to be logged in to see it
+        }
+
+    },
+
+
+    {
+        path: '/edit',
+        name: 'edit',
+        component: Edit,
+        meta: {
+            requiresAdmin: true //this tag means you need to be Admin to edit this
         }
 
     }

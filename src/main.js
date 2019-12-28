@@ -6,6 +6,9 @@ import App from './App.vue';
 import Vuetify from 'vuetify';
 import router from './router';
 // import VeeValidate from 'vee-validate';
+// Load the full build.
+
+
 
 Vue.config.productionTip = process.env.NODE_ENV === 'production';
 
