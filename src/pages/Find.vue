@@ -160,12 +160,12 @@
 
     >
     <v-list-item-content
-    :name="hospital.hospital_name">
-      {{ hospital.address }} <br /> 
-     {{ hospital.city }},{{ hospital.state }} {{ hospital.zip_code }} <br />
+    :name="hospital.hospital_name" >
+     <span class="pa-3"> {{ hospital.address }}</span> <br /> 
+     <span class="pa-3"> {{ hospital.city }},{{ hospital.state }} {{ hospital.zip_code }} </span><br />
      <!-- We can even embed a function with our variables too as in the next line -->
      <!-- I think this is freakishly amazeballs! I love it! -->
-     {{ tophonestring(hospital.phone_number) }}
+      <span class="pa-3">{{ tophonestring(hospital.phone_number) }}</span>
 
       <!-- Link to live call the phone number button
       Is Disabled - Under construction -->

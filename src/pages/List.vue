@@ -42,12 +42,11 @@
     :key="hospital.hospital_name" 
     :name="hospital.hospital_name"
     >
-
     <v-list-item-content 
-    :name="hospital.hospital_name" >
-      {{ hospital.address }} <br />
-      {{ hospital.city }},{{ hospital.state }} {{ hospital.zip_code }} <br />
-      {{ tophonestring(hospital.phone_number) }}
+    :name="hospital.hospital_name"  >
+     <span class="pa-3"> {{ hospital.address }} </span><br />
+     <span class="pa-3"> {{ hospital.city }},{{ hospital.state }} {{ hospital.zip_code }} </span><br />
+      <span class="pa-3">{{ tophonestring(hospital.phone_number) }} </span>
       
     </v-list-item-content> 
                
@@ -57,8 +56,7 @@
 
 
 
-
-      <div v-if="admin">
+      <div v-if="admin"  class="pa-3">
         <!-- If admin level, show active v-chips -->
 
         <v-chip
@@ -85,7 +83,7 @@
           Delete
         </v-chip>
      
-        <div v-if="showJson">
+        <div v-if="showJson" >
             <pre>{{ jsonstr | pretty }}</pre>
         </div>
 
@@ -94,6 +92,9 @@
 
     
     </v-list-item>
+
+
+
     </v-list-group>
   </v-list>
 </v-card>
@@ -120,7 +121,7 @@ export default {
     hospitalToDelete: {},
     newHospital: {},
     hospital:
-      {
+        {
             "_id": "",
             "provider_id": "",
             "hospital_name": "",
@@ -134,12 +135,10 @@ export default {
             "hospital_ownership": "",
             "emergency_services": "true",
             "location": {
-                "human_address": "",
                 "latitude": "",
                 "longitude": "",
-                "needs_recoding": "false"
-            }
-      },
+                }
+        },
 
       phone: "",
       auth: "",
@@ -155,13 +154,12 @@ export default {
       showJson: false,
 
       filters: {
+        // makes a JSON look pretty
           pretty: function(value) {
           return JSON.stringify(JSON.parse(value), null, 2);
           }
       }
      
-
-
 
 }),
 
@@ -197,9 +195,30 @@ setupDelete(hospital) {
 
 },
 
+
+storeCurrentState() {
+  
+  localStorage.setItem('CFHS', this.hospitals.stringify())
+  localStorage.setItem('CFH', this.hospital.stringify())
+  localStorage.setItem('CFCB', 'list')
+
+},
+
+restoreCurrentState() {
+this.hospitals = JSON.parse(localStorage.getItem('CFHS'))
+this.hospital = JSON.parse(localStorage.getItem('CFH'))
+this.callBack = localStorage.getItem('CFCB')
+
+},
+
 setupEdit(hospital){
   
   localStorage.setItem('CFID', hospital.provider_id)
+
+  this.storeCurrentState() 
+
+  
+
   window.scrollTo(0, 0) // send us to the top to look good
   window.location = '#/edit' // Id is set, send control to the edit page
 
@@ -247,6 +266,7 @@ beforeMount()  {
   /* eslint-disable */
   console.log("BEFORE MOUNT")
   this.checkAuth()
+  this.restoreCurrentState()
   this.load()
 }
 };

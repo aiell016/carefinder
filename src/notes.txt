@@ -1,5 +1,11 @@
 
 
+npm i -g npm
+
+
+
+carefull of this
+
 
 update all outdated packages
 

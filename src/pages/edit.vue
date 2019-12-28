@@ -2,7 +2,7 @@
 <div id="app">
   
   <v-app id="inspire">
-    <v-card>
+    <v-card fluid max-width="40%">
     <v-toolbar indigo darken-4>
         <v-toolbar-title>
            Edit Hospital
@@ -57,8 +57,14 @@
           <v-text-field v-model="hospital.emergency_services" label="Emergency Services" class="pa-3">  
           </v-text-field>
 
-           <v-text-field v-model="hospital.location.human_address" label="Location Human Address" class="pa-3">  
+          <v-text-field v-model="hospital.location.latitude" label="latitude" class="pa-3">  
           </v-text-field>
+
+
+          <v-text-field v-model="hospital.location.longitude" label="longitude" class="pa-3">  
+          </v-text-field>
+
+
 
             <v-chip
             color="#ff0000"
@@ -69,7 +75,7 @@
             </v-chip> 
 
             <v-chip
-            color="black"
+            color="#1b178f"
             outline
             @click="saveForm()"
             >
@@ -101,7 +107,7 @@
 <script>
 
 import { http } from "../components/http"
-
+// var _ = require('lodash');
 
 export default {
     
@@ -118,7 +124,7 @@ export default {
       editMessage: "",
       results: false,
       progressCircle: false
-
+  
 
     }),
 
@@ -141,6 +147,7 @@ export default {
               this.hospitals = response.data
               /* eslint-disable */
               console.log(this.hospitals)
+             
             })
             .catch(e => {
               // this.errors.push(e);
@@ -162,6 +169,11 @@ export default {
 
 
          }
+
+         
+
+
+
                 
   },
 
