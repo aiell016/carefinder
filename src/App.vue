@@ -235,7 +235,8 @@
       },
 
       setupLogin() {
-        this.displayLogin = true
+        this.displayLogin = ! this.displayLogin
+        // toggle the login screen if the login button on top nav is pressed
       },
 
 
