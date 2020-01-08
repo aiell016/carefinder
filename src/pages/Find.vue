@@ -15,10 +15,8 @@
             <v-col cols="12" md="4">
               <v-layout row align-left justify-left>
 
-
                 <v-form ref="form">
                   <v-text-field v-model="searchText" placeholder="search" prepend-icon="search">
-
                   </v-text-field>
                 </v-form>
 
@@ -36,7 +34,6 @@
                       City
                     </v-chip>
 
-
                     <v-chip color="#1b178f" outline @click="chooseCounty()">
                       County
                     </v-chip>
@@ -45,11 +42,9 @@
                       State
                     </v-chip>
 
-
                     <v-chip class="ma-2" color="#1b178f" outline @click="chooseCityState()">
                       City, State
                     </v-chip>
-
 
                     <v-chip class="ma-2" color="#1b178f" outline @click="chooseType()">
                       Hospital Type
@@ -59,7 +54,6 @@
                       ID
                     </v-chip>
 
-
                     <v-chip class="ma-2" color="#1b178f" outline @click="chooseName()">
                       Hospital Name
                     </v-chip>
@@ -68,23 +62,12 @@
                       Emergency Services
                     </v-chip>
 
-
                   </div>
-
-
-
                 </v-container>
-
-
               </v-layout>
             </v-col>
-
           </v-row>
-
-
         </v-container>
-
-
 
         <v-card v-if="results">
           <v-toolbar>
@@ -115,13 +98,11 @@
                   <span class="pa-3">{{ tophonestring(hospital.phone_number) }}</span>
 
                   <!-- Link to live call the phone number button
-      Is Disabled - Under construction -->
+                  Is Disabled - Under construction -->
 
                   <!-- <a href=callequal() target="_new"> -->
                   <v-icon>phone</v-icon> {{ hospital.phone_number }}
                   <!-- </a> -->
-                  <!-- I am leaving in the extra phone number so we can debug in case the built telephone string
-      differs from the original phone number ( i.e. negative numbers - shame on me but wtf how did that happen) -->
 
                 </v-list-item-content>
 
@@ -132,29 +113,18 @@
                     JSON
                   </v-chip>
 
-
                   <v-chip color="#1b178f" outline @click="setupEdit(hospital)">
                     Edit
                   </v-chip>
 
-
                   <div v-if="showJson">
                     <pre>{{ jsonstr | pretty }}</pre>
                   </div>
-
-
-
-
                 </div>
-
               </v-list-item>
-
-
             </v-list-group>
           </v-list>
         </v-card>
-
-
       </v-card>
     </v-app>
   </div>

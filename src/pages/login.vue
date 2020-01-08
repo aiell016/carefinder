@@ -5,7 +5,7 @@
         <v-flex xs2>
         </v-flex>
         <v-flex xs4>
-          <!-- Begin Login Card WIndow Thing -->
+          <!-- Begin Login v-card -->
           <v-card>
             <v-toolbar class="white--text" style="background-color: #1b67bd;">
               <v-toolbar-title>
@@ -34,6 +34,11 @@
                 <v-btn v-if="! needMore" @click="needMore = true" class="blue darken-2 white--text">Register</v-btn>
                 <v-btn v-if="needMore" @click="register()" class="green darken-2 white--text">Register</v-btn>
               </v-form>
+               <p>
+                    <v-progress-circular v-if="progresscircle" :size="25" color="primary" indeterminate>
+                    </v-progress-circular>
+                  </p>
+
 
               <v-card v-if="! displayLogin">You are logged in {{ user.token }}
               </v-card>
@@ -68,6 +73,7 @@
 
       displayLogin: true,
       needMore: false,
+      progressCircle: false,
 
       newUser: {
         firstName: '',
@@ -85,7 +91,9 @@
         password: '',
         admin: '',
         auth: ''
-      }
+      },
+
+      loggedin: false
 
       // Good spacing practices makes easier reading
 
@@ -93,10 +101,14 @@
 
     methods: {
 
+
+      async login() {
+        
       //sends the credentials to the server to get an API token, tokens expire after 24 hrs so requiring new login means we
       //can keep an up to date token in use.
 
-      async login() {
+        this.progressCircle = true
+
         http.post('/users/login', this.credentials)
           .then(response => {
             if (response.status == 200) { //on successful login
@@ -105,11 +117,15 @@
               localStorage.setItem('CFToken', tempToken) //store the token in localstorage
               localStorage.setItem('CFAuth', response.data.auth) //store the auth in localstorage
               localStorage.setItem('CFAdmin', response.data.admin) //store the admin in localstorage
+              localStorage.setItem('CFLoggedin', true) // set logges in to true in the cookie - for now
 
               http.defaults.headers['x-access-token'] = localStorage.getItem('CFToken')
               tempToken = ''
               this.$root.$emit('tokenMade')
               this.displayLogin = false
+              this.progressCircle = false
+              this.loggedin = true
+              this.$emit('loggedin', true)
               window.scrollTo(0, 0) //send us to the top to look good
               window.location = '#/home' //send em to the home page
             } else {
@@ -118,6 +134,7 @@
           })
           .catch(e => {
             /* eslint-disable */
+            this.progressCircle = false
             console.log(e)
           })
       },

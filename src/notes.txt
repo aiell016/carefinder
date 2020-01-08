@@ -1,15 +1,48 @@
-
-
 npm i -g npm
-
-
-
 carefull of this
-
-
 update all outdated packages
-
 npm i npm-update-all -g
-
-
 npm-update-all
+
+
+
+		Fresh Install:
+		
+
+Install NodeJs  LTS
+
+Install Visual Studio Code
+
+open, get to command line
+
+
+do admin powershell this first
+get-executionpolicy 
+
+
+Set-ExecutionPolicy RemoteSigned 
+Set-ExecutionPolicy Restricted
+
+Install vue
+npm install vue
+
+
+npm uninstall -g vue-cli
+
+npm install -g @vue/cli@latest
+
+
+
+https://tecadmin.net/powershell-running-scripts-is-disabled-system/
+
+devbase (router, babel, eslint)
+
+for http calls  
+npm install axios
+
+
+npm install
+
+
+npm run dev
+
