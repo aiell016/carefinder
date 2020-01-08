@@ -2,7 +2,6 @@
 
   <v-app light>
       
-
        
     <v-navigation-drawer v-if="loggedin" persistent :mini-variant="miniVariant" :clipped="clipped" v-model="drawer"
       enable-resize-watcher app>
@@ -24,8 +23,13 @@
       <v-toolbar-title id="white" v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
     
-      <v-button  v-if="loggedin" @click="logout()" id="white">Logout</v-button>
-      <v-button  v-if="! loggedin" @click="setupLogin()" id="white">Login</v-button>
+    
+      <v-chip v-if="!loggedin" class="ma-2" color="white" outline @click="setupLogin()">
+       Login
+      </v-chip>
+      <v-chip v-if="loggedin" class="ma-2" color="white" outline @click="logout()">
+       Logout
+      </v-chip>
 
     </v-toolbar>
 
@@ -34,7 +38,7 @@
 
 
 
-
+<!-- Login Screen -->
   <v-container v-if="displayLogin">
     <v-container class="pa-0">
       <v-layout row>
@@ -43,7 +47,7 @@
         <v-flex xs4>
           <!-- Begin Login v-card -->
           <v-card>
-            <v-toolbar class="white--text" style="background-color: #1b67bd;">
+            <v-toolbar class="indigo darken-4 white--text" >
               <v-toolbar-title>
                 Login
               </v-toolbar-title>
@@ -66,11 +70,14 @@
                   type="password" required>Password
                 </v-text-field>
 
-                <v-btn @click="login()" class="green darken-1 white--text" >Login</v-btn>
-                <v-btn v-if="! needMore" @click="needMore = true" class="blue darken-2 white--text">Register</v-btn>
-                <v-btn v-if="needMore" @click="register()" class="green darken-2 white--text">Register</v-btn>
-              </v-form>
-               
+                <v-chip v-if="! needMore" @click="login()" class="green darken-4 white--text" >Login</v-chip>
+
+                <v-chip v-if="! needMore" @click="needMore = true" class="indigo darken-4 white--text">Register</v-chip>
+                <v-chip v-if="needMore" @click="register()" class="green darken-4 white--text">Register</v-chip>
+                <v-chip v-if="needMore" @click="cancel()" class="red accent-4 white--text">Cancel</v-chip>
+
+
+              </v-form>         
 
             </v-container>
           </v-card>
@@ -83,25 +90,16 @@
   </v-container>
 
 
-
-
-
-        <v-container fluid>
+        <v-container fluid v-if="loggedin">
           <v-slide-y-transition mode="out-in">
             <v-layout column align-left>
               <router-view></router-view>
 
-
-
-
-
             </v-layout>
           </v-slide-y-transition>
         </v-container>
-
       </v-content>
     </main>
-
 
 
     <v-footer :fixed="fixed" app>
@@ -127,7 +125,7 @@
         auth: false,
         admin: false,
         token: '',
-        action: '',
+        
         displayLogin: false,
         needMore: false,
         
@@ -257,8 +255,9 @@
               tempToken = ''
               this.$root.$emit('tokenMade')
               this.displayLogin = false
-              this.progressCircle = false
+              
               this.loggedin = true
+              this.drawer = true
               this.$emit('loggedin', true)
               window.scrollTo(0, 0) //send us to the top to look good
               window.location = '#/home' //send em to the home page
@@ -280,8 +279,15 @@
         /* eslint-disable */
         alert("Registration Complete!") // Registration is done-done
         this.needMore = false
+        // complete the post new user to registration endpoint
+        // once my server is up
 
       },
+
+      cancel() {
+        this.needMore = false
+
+      }
 
 
 
