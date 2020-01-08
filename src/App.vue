@@ -220,13 +220,16 @@
 
       logout() {
 
-        localStorage.removeItem('CFToken') // remove them too
+        localStorage.removeItem('CFToken') // remove all local storage
         localStorage.removeItem('CFAuth')
         localStorage.removeItem('CFAdmin')
         localStorage.removeItem('CFCBP')
         localStorage.removeItem('CFLoggedin')
         this.loggedin=false
         this.token = ''
+        this.auth = false
+        this.admin = false
+        this.displayLogin = false
         
         window.scrollTo(0, 0) // send us to the top to look good
         window.location = '#/home' // Id is set, send control to the logout
@@ -243,7 +246,7 @@
       async login() {   
       //sends the credentials to the server to get an API token, tokens expire after 24 hrs so requiring new login means we
       //can keep an up to date token in use.
-        this.progressCircle = true
+        
         http.post('/users/login', this.credentials)
           .then(response => {
             if (response.status == 200) { //on successful login
@@ -268,7 +271,6 @@
           })
           .catch(e => {
             /* eslint-disable */
-            this.progressCircle = false
             console.log(e)
           })
       },
@@ -287,24 +289,22 @@
 
       cancel() {
         this.needMore = false
-
       }
-
 
 
     },
     
+    
     beforeMount() {
       /* eslint-disable */
-      console.log("BEFORE MOUNT SetupUser")
-      this.setupUser()
-
+      console.log("BEFORE MOUNT")
+      
     },
 
 
-      // mounted() {
-        
-      // }
+      mounted() {
+        this.setupUser()
+      }
 
 
     };
