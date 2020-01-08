@@ -4,7 +4,7 @@ export const http = axios.create({
     baseURL: "https://server-cli-api.herokuapp.com/api",
     headers: {
         'x-access-token': localStorage.getItem("CFToken"),
-        // 'user-id': localStorage.getItem("CFId")
+       // The session's API Access is token stored in here ^^
     }
 });
 

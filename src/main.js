@@ -5,15 +5,12 @@ import Vue from 'vue';
 import App from './App.vue';
 import Vuetify from 'vuetify';
 import router from './router';
-// import VeeValidate from 'vee-validate';
-// Load the full build.
-
 
 
 Vue.config.productionTip = process.env.NODE_ENV === 'production';
 
 Vue.use(Vuetify);
-// Vue.use(VeeValidate);
+
 
 new Vue({
     el: '#app',

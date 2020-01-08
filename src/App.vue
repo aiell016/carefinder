@@ -1,7 +1,10 @@
 <template>
 
   <v-app light>
-    <v-navigation-drawer persistent :mini-variant="miniVariant" :clipped="clipped" v-model="drawer"
+      
+
+       
+    <v-navigation-drawer v-if="loggedin" persistent :mini-variant="miniVariant" :clipped="clipped" v-model="drawer"
       enable-resize-watcher app>
 
       <v-list>
@@ -20,19 +23,86 @@
       <v-toolbar-side-icon id="white" @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title id="white" v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
+    
+      <v-button  v-if="loggedin" @click="logout()" id="white">Logout</v-button>
+      <v-button  v-if="! loggedin" @click="setupLogin()" id="white">Login</v-button>
+
     </v-toolbar>
 
     <main>
       <v-content>
+
+
+
+
+  <v-container v-if="displayLogin">
+    <v-container class="pa-0">
+      <v-layout row>
+        <v-flex xs2>
+        </v-flex>
+        <v-flex xs4>
+          <!-- Begin Login v-card -->
+          <v-card>
+            <v-toolbar class="white--text" style="background-color: #1b67bd;">
+              <v-toolbar-title>
+                Login
+              </v-toolbar-title>
+              <v-spacer></v-spacer>
+            </v-toolbar>
+            <v-container>
+              <v-form ref="login">
+                <p v-if="needMore"> First Name <span id="red">*</span>
+                  <v-text-field v-model="newUser.firstName" ref="firstname" required>
+                  </v-text-field>
+                  Last Name <span id="red">*</span>
+                  <v-text-field v-model="newUser.lastName" ref="lastname" required>
+                  </v-text-field>
+                  <span id="red"> *</span> Real names are required
+                </p> <br />
+
+                <v-icon>fas fa-user</v-icon> Email
+                <v-text-field cols-2 v-model="credentials.email" ref="email" required></v-text-field>
+                <v-icon>fas fa-lock</v-icon> Password<v-text-field v-model="credentials.password" ref="password"
+                  type="password" required>Password
+                </v-text-field>
+
+                <v-btn @click="login()" class="green darken-1 white--text" >Login</v-btn>
+                <v-btn v-if="! needMore" @click="needMore = true" class="blue darken-2 white--text">Register</v-btn>
+                <v-btn v-if="needMore" @click="register()" class="green darken-2 white--text">Register</v-btn>
+              </v-form>
+               
+
+            </v-container>
+          </v-card>
+          <!-- End Login Window -->
+        </v-flex>
+        <v-flex xs4>
+        </v-flex>
+      </v-layout>
+    </v-container>
+  </v-container>
+
+
+
+
+
         <v-container fluid>
           <v-slide-y-transition mode="out-in">
             <v-layout column align-left>
               <router-view></router-view>
+
+
+
+
+
             </v-layout>
           </v-slide-y-transition>
         </v-container>
+
       </v-content>
     </main>
+
+
 
     <v-footer :fixed="fixed" app>
       <span>&copy; 2019 <a href="https://aiello.io" target="new">Aiello.io</a></span>
@@ -42,6 +112,9 @@
 
 <script>
   // import router from "./router/index.js";
+
+  import { http } from '@/components/http.js'
+
   export default {
     data() {
 
@@ -50,15 +123,46 @@
         clipped: true,
         drawer: true,
         fixed: false,
+        loginMessage: '',
+        auth: false,
+        admin: false,
+        token: '',
+        action: '',
+        displayLogin: false,
+        needMore: false,
+        
+      credentials: {
+        email: '',
+        password: ''
+      },
+
+      newUser: {
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        admin: false,
+        auth: false
+      },
+
+      user: {
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        admin: '',
+        auth: ''
+      },
+
+
+          filters: {
+            // makes a JSON look pretty
+            pretty: function (value) {
+              return JSON.stringify(JSON.parse(value), null, 2);
+            }
+          },
 
         items: [
-
-          {
-            href: "/#/login",
-            router: true,
-            icon: "person", // font awesome icon packages start with fa
-            title: "Login"
-          },
 
 
           {
@@ -96,10 +200,108 @@
 
         miniVariant: false,
         title: "Care Finder",
-        subTitle: "Find Care!"
+        subTitle: "Find Care!",
+        loggedin: false
       };
-    }
-  };
+    },
+
+
+
+    methods:
+    {
+
+      setupUser() {
+
+        this.auth = localStorage.getItem('CFAuth')
+        this.admin = localStorage.getItem('CFAdmin')
+        this.token = localStorage.getItem('CFToken')
+        this.loggedin = localStorage.getItem('CFLoggedin')
+        if (this.loggedin == '' ) this.loggedin = false
+
+      },
+
+      logout() {
+
+        localStorage.removeItem('CFToken') // remove them too
+        localStorage.removeItem('CFAuth')
+        localStorage.removeItem('CFAdmin')
+        localStorage.removeItem('CFCBP')
+        localStorage.removeItem('CFLoggedin')
+        this.loggedin=false
+        this.token = ''
+        
+        window.scrollTo(0, 0) // send us to the top to look good
+        window.location = '#/home' // Id is set, send control to the logout
+        
+
+      },
+
+      setupLogin() {
+        this.displayLogin = true
+      },
+
+
+      async login() {   
+      //sends the credentials to the server to get an API token, tokens expire after 24 hrs so requiring new login means we
+      //can keep an up to date token in use.
+        this.progressCircle = true
+        http.post('/users/login', this.credentials)
+          .then(response => {
+            if (response.status == 200) { //on successful login
+              let tempToken = response.data.token // store as tmp
+              localStorage.setItem('CFToken', tempToken) //store the token in localstorage
+              localStorage.setItem('CFAuth', response.data.auth) //store the auth in localstorage
+              localStorage.setItem('CFAdmin', response.data.admin) //store the admin in localstorage
+              localStorage.setItem('CFLoggedin', true) // set logges in to true in the cookie - for now
+              http.defaults.headers['x-access-token'] = localStorage.getItem('CFToken')
+              tempToken = ''
+              this.$root.$emit('tokenMade')
+              this.displayLogin = false
+              this.progressCircle = false
+              this.loggedin = true
+              this.$emit('loggedin', true)
+              window.scrollTo(0, 0) //send us to the top to look good
+              window.location = '#/home' //send em to the home page
+            } else {
+              alert("Login Failed") //something didnt work
+            }
+          })
+          .catch(e => {
+            /* eslint-disable */
+            this.progressCircle = false
+            console.log(e)
+          })
+      },
+
+      register() {
+        this.newUser.password = this.credentials.password
+        this.newUser.email = this.credentials.email
+        // First and Last name are already set in the newUser object
+        /* eslint-disable */
+        alert("Registration Complete!") // Registration is done-done
+        this.needMore = false
+
+      },
+
+
+
+    },
+    
+    beforeMount() {
+      /* eslint-disable */
+      console.log("BEFORE MOUNT SetupUser")
+      this.setupUser()
+
+    },
+
+
+      // mounted() {
+        
+      // }
+
+
+    };
+
 </script>
 
 
