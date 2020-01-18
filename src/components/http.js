@@ -1,10 +1,13 @@
 import axios from "axios";
 
 export const http = axios.create({
-    baseURL: "https://powerful-beach-37119.herokuapp.com/api",
+    baseURL: "https://powerful-beach-37119.herokuapp.com/",
     headers: {
         'x-access-token': localStorage.getItem("CFToken"),
        // The session's API Access is token stored in here ^^
+
+   
+
     }
 });
 
