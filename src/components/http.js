@@ -1,14 +1,14 @@
 import axios from "axios";
 
 export const http = axios.create({
-    baseURL: "https://server-cli-api.herokuapp.com/api",
+    baseURL: "https://powerful-beach-37119.herokuapp.com",
     headers: {
         'x-access-token': localStorage.getItem("CFToken"),
        // The session's API Access is token stored in here ^^
 // https://server-cli-api.herokuapp.com/api
 
 // My cluster:
-// http://powerful-beach-37119.herokuapp.com
+// https://powerful-beach-37119.herokuapp.com
    
 
     }

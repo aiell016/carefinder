@@ -117,7 +117,7 @@
               localStorage.setItem('CFToken', tempToken) //store the token in localstorage
               localStorage.setItem('CFAuth', response.data.auth) //store the auth in localstorage
               localStorage.setItem('CFAdmin', response.data.admin) //store the admin in localstorage
-              localStorage.setItem('CFLoggedin', true) // set logges in to true in the cookie - for now
+              localStorage.setItem('CFLoggedin', true) // set logged in to true in the cookie - for now
 
               http.defaults.headers['x-access-token'] = localStorage.getItem('CFToken')
               tempToken = ''
