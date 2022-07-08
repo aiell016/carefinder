@@ -15,7 +15,7 @@
     "caniuse-lite": "^1.0.30001123",
     "corejs": "^1.0.0",
     "fontawesome": "^5.6.3",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "mdbvue": "^6.7.1",
     "vue": "^2.6.12",
     "vue-router": "^3.4.3",
