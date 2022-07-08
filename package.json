@@ -10,7 +10,7 @@
     "dev": "vue-cli-service serve"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.2",
     "browserslist": "^4.14.0",
     "caniuse-lite": "^1.0.30001123",
     "corejs": "^1.0.0",
